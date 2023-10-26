@@ -1,0 +1,11 @@
+/Users/jonatas/Documents/projects/ERP/ERP.Application/bin/Debug/net7.0/ERP.Application.deps.json
+/Users/jonatas/Documents/projects/ERP/ERP.Application/bin/Debug/net7.0/ERP.Application.dll
+/Users/jonatas/Documents/projects/ERP/ERP.Application/bin/Debug/net7.0/ERP.Application.pdb
+/Users/jonatas/Documents/projects/ERP/ERP.Application/obj/Debug/net7.0/ERP.Application.GeneratedMSBuildEditorConfig.editorconfig
+/Users/jonatas/Documents/projects/ERP/ERP.Application/obj/Debug/net7.0/ERP.Application.AssemblyInfoInputs.cache
+/Users/jonatas/Documents/projects/ERP/ERP.Application/obj/Debug/net7.0/ERP.Application.AssemblyInfo.cs
+/Users/jonatas/Documents/projects/ERP/ERP.Application/obj/Debug/net7.0/ERP.Application.csproj.CoreCompileInputs.cache
+/Users/jonatas/Documents/projects/ERP/ERP.Application/obj/Debug/net7.0/ERP.Application.dll
+/Users/jonatas/Documents/projects/ERP/ERP.Application/obj/Debug/net7.0/refint/ERP.Application.dll
+/Users/jonatas/Documents/projects/ERP/ERP.Application/obj/Debug/net7.0/ERP.Application.pdb
+/Users/jonatas/Documents/projects/ERP/ERP.Application/obj/Debug/net7.0/ref/ERP.Application.dll

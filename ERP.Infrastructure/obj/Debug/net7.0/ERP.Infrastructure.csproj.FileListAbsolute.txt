@@ -1,0 +1,17 @@
+/Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/bin/Debug/net7.0/ERP.Infrastructure.deps.json
+/Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/bin/Debug/net7.0/ERP.Infrastructure.dll
+/Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/bin/Debug/net7.0/ERP.Infrastructure.pdb
+/Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/obj/Debug/net7.0/ERP.Infrastructure.csproj.AssemblyReference.cache
+/Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/obj/Debug/net7.0/ERP.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/obj/Debug/net7.0/ERP.Infrastructure.AssemblyInfoInputs.cache
+/Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/obj/Debug/net7.0/ERP.Infrastructure.AssemblyInfo.cs
+/Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/obj/Debug/net7.0/ERP.Infrastructure.csproj.CoreCompileInputs.cache
+/Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/obj/Debug/net7.0/ERP.Infrastructure.dll
+/Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/obj/Debug/net7.0/refint/ERP.Infrastructure.dll
+/Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/obj/Debug/net7.0/ERP.Infrastructure.pdb
+/Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/obj/Debug/net7.0/ref/ERP.Infrastructure.dll
+/Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/bin/Debug/net7.0/ERP.Infrastructure.runtimeconfig.json
+/Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/obj/Debug/net7.0/ERP.Infrastructure.genruntimeconfig.cache
+/Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/bin/Debug/net7.0/ERP.Domain.dll
+/Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/bin/Debug/net7.0/ERP.Domain.pdb
+/Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/obj/Debug/net7.0/ERP.Infrastructure.csproj.CopyComplete

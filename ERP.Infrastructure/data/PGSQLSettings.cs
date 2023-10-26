@@ -5,5 +5,5 @@ public class PgsqlSettings
 {
     public const string SectionName = "ConnectionStrings";
 
-    public string SqlServer { get; set; } = null!;
+    public string PostgreSQL { get; set; } = null!;
 }

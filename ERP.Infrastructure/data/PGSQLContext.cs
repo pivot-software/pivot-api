@@ -1,6 +1,6 @@
 using System.Data;
 using Microsoft.Extensions.Options;
-using System.Data.SqlClient;
+using Npgsql;
 
 namespace ERP.Infrastructure.data;
 
@@ -14,5 +14,5 @@ public class PgsqlContext
     }
 
     public IDbConnection CreateConnection()
-        => new SqlConnection(_pgsqlSettings.SqlServer);
+        => new NpgsqlConnection(_pgsqlSettings.PostgreSQL);
 }

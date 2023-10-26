@@ -4,14 +4,14 @@
     "/Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/ERP.Infrastructure.csproj": {}
   },
   "projects": {
-    "/Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/ERP.Infrastructure.csproj": {
+    "/Users/jonatas/Documents/projects/ERP/ERP.Domain/ERP.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/ERP.Infrastructure.csproj",
-        "projectName": "ERP.Infrastructure",
-        "projectPath": "/Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/ERP.Infrastructure.csproj",
+        "projectUniqueName": "/Users/jonatas/Documents/projects/ERP/ERP.Domain/ERP.Domain.csproj",
+        "projectName": "ERP.Domain",
+        "projectPath": "/Users/jonatas/Documents/projects/ERP/ERP.Domain/ERP.Domain.csproj",
         "packagesPath": "/Users/jonatas/.nuget/packages/",
-        "outputPath": "/Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/obj/",
+        "outputPath": "/Users/jonatas/Documents/projects/ERP/ERP.Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/jonatas/.nuget/NuGet/NuGet.Config"
@@ -37,7 +37,74 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.400/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/ERP.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/ERP.Infrastructure.csproj",
+        "projectName": "ERP.Infrastructure",
+        "projectPath": "/Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/ERP.Infrastructure.csproj",
+        "packagesPath": "/Users/jonatas/.nuget/packages/",
+        "outputPath": "/Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/jonatas/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/Users/jonatas/Documents/projects/ERP/ERP.Domain/ERP.Domain.csproj": {
+                "projectPath": "/Users/jonatas/Documents/projects/ERP/ERP.Domain/ERP.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.13, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.13, )"
+            },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
               "version": "[7.0.0, )"
@@ -57,6 +124,10 @@
             "Microsoft.Extensions.Options.ConfigurationExtensions": {
               "target": "Package",
               "version": "[7.0.0, )"
+            },
+            "Npgsql": {
+              "target": "Package",
+              "version": "[7.0.6, )"
             },
             "System.Data.SqlClient": {
               "target": "Package",

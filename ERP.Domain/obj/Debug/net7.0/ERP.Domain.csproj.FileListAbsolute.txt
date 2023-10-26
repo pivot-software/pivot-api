@@ -1,0 +1,11 @@
+/Users/jonatas/Documents/projects/ERP/ERP.Domain/bin/Debug/net7.0/ERP.Domain.deps.json
+/Users/jonatas/Documents/projects/ERP/ERP.Domain/bin/Debug/net7.0/ERP.Domain.dll
+/Users/jonatas/Documents/projects/ERP/ERP.Domain/bin/Debug/net7.0/ERP.Domain.pdb
+/Users/jonatas/Documents/projects/ERP/ERP.Domain/obj/Debug/net7.0/ERP.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/jonatas/Documents/projects/ERP/ERP.Domain/obj/Debug/net7.0/ERP.Domain.AssemblyInfoInputs.cache
+/Users/jonatas/Documents/projects/ERP/ERP.Domain/obj/Debug/net7.0/ERP.Domain.AssemblyInfo.cs
+/Users/jonatas/Documents/projects/ERP/ERP.Domain/obj/Debug/net7.0/ERP.Domain.csproj.CoreCompileInputs.cache
+/Users/jonatas/Documents/projects/ERP/ERP.Domain/obj/Debug/net7.0/ERP.Domain.dll
+/Users/jonatas/Documents/projects/ERP/ERP.Domain/obj/Debug/net7.0/refint/ERP.Domain.dll
+/Users/jonatas/Documents/projects/ERP/ERP.Domain/obj/Debug/net7.0/ERP.Domain.pdb
+/Users/jonatas/Documents/projects/ERP/ERP.Domain/obj/Debug/net7.0/ref/ERP.Domain.dll
