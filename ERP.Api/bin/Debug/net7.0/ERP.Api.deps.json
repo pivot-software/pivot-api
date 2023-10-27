@@ -62,7 +62,7 @@
       "Ardalis.Result.FluentValidation/7.1.0": {
         "dependencies": {
           "Ardalis.Result": "7.1.0",
-          "FluentValidation": "11.5.1"
+          "FluentValidation": "11.8.0"
         },
         "runtime": {
           "lib/net7.0/Ardalis.Result.FluentValidation.dll": {
@@ -124,11 +124,11 @@
           }
         }
       },
-      "FluentValidation/11.5.1": {
+      "FluentValidation/11.8.0": {
         "runtime": {
           "lib/net7.0/FluentValidation.dll": {
             "assemblyVersion": "11.0.0.0",
-            "fileVersion": "11.5.1.0"
+            "fileVersion": "11.8.0.0"
           }
         }
       },
@@ -1219,6 +1219,7 @@
       },
       "ERP.Shared/1.0.0": {
         "dependencies": {
+          "FluentValidation": "11.8.0",
           "Microsoft.EntityFrameworkCore.Relational": "7.0.13",
           "Microsoft.Extensions.Configuration": "7.0.0",
           "Microsoft.Extensions.Configuration.Abstractions": "7.0.0",
@@ -1227,6 +1228,7 @@
           "Microsoft.Extensions.Hosting": "7.0.1",
           "Microsoft.Extensions.Hosting.Abstractions": "7.0.0",
           "Microsoft.Extensions.Options.DataAnnotations": "7.0.0",
+          "Newtonsoft.Json": "13.0.3",
           "System.Configuration.ConfigurationManager": "7.0.0"
         },
         "runtime": {
@@ -1290,12 +1292,12 @@
       "path": "bcrypt.net-next/4.0.3",
       "hashPath": "bcrypt.net-next.4.0.3.nupkg.sha512"
     },
-    "FluentValidation/11.5.1": {
+    "FluentValidation/11.8.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-0h1Q5lNOLLyYTWMJmyNoMqhY4CBRvvUWvJP1R4F2CnmmzuWwvB0A8aVmw5+lOuwYnwUwCRrdeMLbc81F38ahNQ==",
-      "path": "fluentvalidation/11.5.1",
-      "hashPath": "fluentvalidation.11.5.1.nupkg.sha512"
+      "sha512": "sha512-TiEaaYqSIAS+wXQv46LRm8Mca092XYNePD0n231Hqlkmm5FuToZoWnjI1ef/vJUxBzqR7/k2vaVQXxijNgVKRQ==",
+      "path": "fluentvalidation/11.8.0",
+      "hashPath": "fluentvalidation.11.8.0.nupkg.sha512"
     },
     "Humanizer.Core/2.14.1": {
       "type": "package",

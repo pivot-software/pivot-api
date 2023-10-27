@@ -5,7 +5,7 @@ using ERP.Shared.Messages;
 
 namespace ERP.Application.Requests.AuthenticationRequests;
 
-public class LogInRequest 
+public class LogInRequest : BaseRequestWithValidation
 {
     public LogInRequest(string email, string password)
     {
@@ -22,5 +22,8 @@ public class LogInRequest
     [MinLength(4)]
     [DataType(DataType.Password)]
     public string Password { get; }
+    
+    public override async Task ValidateAsync() =>
+        ValidationResult = await LazyValidator.ValidateAsync<LogInRequestValidator>(this);
 
 }

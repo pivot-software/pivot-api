@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "4/ZgK16qm80IiFTRvrT+KyNg6bj698d5ZySqeGRYbwVBfZESyLGm/YIKnWJ0/JkJ73wQ+1c36DAfwymQnVtt2g==",
+  "dgSpecHash": "UMtyBq/OnYUNftpYBcB9owupjy7pDo/TmuVLgKpMJ7VmxQb4xN7bX5J1HdBG1zUreyZtFCHTrdo+ZtBlEl+3hw==",
   "success": true,
   "projectFilePath": "/Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/ERP.Infrastructure.csproj",
   "expectedPackageFiles": [
     "/Users/jonatas/.nuget/packages/ardalis.guardclauses/4.1.1/ardalis.guardclauses.4.1.1.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
+    "/Users/jonatas/.nuget/packages/fluentvalidation/11.8.0/fluentvalidation.11.8.0.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/microsoft.aspnetcore.http/2.2.2/microsoft.aspnetcore.http.2.2.2.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/microsoft.aspnetcore.http.abstractions/2.2.0/microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
@@ -56,6 +57,7 @@
     "/Users/jonatas/.nuget/packages/microsoft.win32.registry/4.7.0/microsoft.win32.registry.4.7.0.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/microsoft.win32.systemevents/7.0.0/microsoft.win32.systemevents.7.0.0.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/mono.texttemplating/2.2.1/mono.texttemplating.2.2.1.nupkg.sha512",
+    "/Users/jonatas/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/npgsql/7.0.6/npgsql.7.0.6.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/runtime.native.system.data.sqlclient.sni/4.7.0/runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/runtime.win-arm64.runtime.native.system.data.sqlclient.sni/4.4.0/runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",

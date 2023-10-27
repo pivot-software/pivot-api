@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "u3a1yLSh1Yjun6zAVKMry67pm03eEzBZZr7r5Au++NUkaTG4ws3ZRpHHUeMRrreG2o5DgKDq5gUOaunw/txjrA==",
+  "dgSpecHash": "xKKMGDrHl5UFECk8L+dkpP6OB4WX+WbytVpmB78swBuhUJwFlrpA3KhshsIiUlX9VPgKWOqsUWRUiMxyIe4nOw==",
   "success": true,
   "projectFilePath": "/Users/jonatas/Documents/projects/ERP/ERP.Application/ERP.Application.csproj",
   "expectedPackageFiles": [
@@ -9,7 +9,7 @@
     "/Users/jonatas/.nuget/packages/ardalis.result.fluentvalidation/7.1.0/ardalis.result.fluentvalidation.7.1.0.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
-    "/Users/jonatas/.nuget/packages/fluentvalidation/11.5.1/fluentvalidation.11.5.1.nupkg.sha512",
+    "/Users/jonatas/.nuget/packages/fluentvalidation/11.8.0/fluentvalidation.11.8.0.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/microsoft.aspnetcore.http/2.2.2/microsoft.aspnetcore.http.2.2.2.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/microsoft.aspnetcore.http.abstractions/2.2.0/microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/microsoft.aspnetcore.http.features/2.2.0/microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
@@ -58,6 +58,7 @@
     "/Users/jonatas/.nuget/packages/microsoft.netcore.targets/1.1.0/microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/microsoft.win32.registry/4.7.0/microsoft.win32.registry.4.7.0.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/microsoft.win32.systemevents/7.0.0/microsoft.win32.systemevents.7.0.0.nupkg.sha512",
+    "/Users/jonatas/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/npgsql/7.0.6/npgsql.7.0.6.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/runtime.native.system.data.sqlclient.sni/4.7.0/runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/runtime.win-arm64.runtime.native.system.data.sqlclient.sni/4.4.0/runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",

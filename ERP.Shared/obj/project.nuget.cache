@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Tycvh4WqcTAeYm5CgvmM3GXEGmnGXZuMgBt/8xuMcrU3+r3zIMhP/PoaBh/QZ5OZN+xk/B+KN49jqPemjpdzbw==",
+  "dgSpecHash": "NQnzpKKRJKoXVfybA9d4WwqHRP6YpENFCsmYceWmSqv0/Mn4Isn5S1AxocBy7eEuxSSfqvUFNvK+26fXWUF3Mw==",
   "success": true,
   "projectFilePath": "/Users/jonatas/Documents/projects/ERP/ERP.Shared/ERP.Shared.csproj",
   "expectedPackageFiles": [
+    "/Users/jonatas/.nuget/packages/fluentvalidation/11.8.0/fluentvalidation.11.8.0.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/microsoft.entityframeworkcore/7.0.13/microsoft.entityframeworkcore.7.0.13.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/microsoft.entityframeworkcore.abstractions/7.0.13/microsoft.entityframeworkcore.abstractions.7.0.13.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/microsoft.entityframeworkcore.analyzers/7.0.13/microsoft.entityframeworkcore.analyzers.7.0.13.nupkg.sha512",
@@ -37,6 +38,7 @@
     "/Users/jonatas/.nuget/packages/microsoft.extensions.options.dataannotations/7.0.0/microsoft.extensions.options.dataannotations.7.0.0.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/microsoft.extensions.primitives/7.0.0/microsoft.extensions.primitives.7.0.0.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/microsoft.win32.systemevents/7.0.0/microsoft.win32.systemevents.7.0.0.nupkg.sha512",
+    "/Users/jonatas/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/system.configuration.configurationmanager/7.0.0/system.configuration.configurationmanager.7.0.0.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/system.diagnostics.diagnosticsource/7.0.1/system.diagnostics.diagnosticsource.7.0.1.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/system.diagnostics.eventlog/7.0.0/system.diagnostics.eventlog.7.0.0.nupkg.sha512",

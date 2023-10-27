@@ -1,6 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Ardalis.Result;
+using Ardalis.Result.FluentValidation;
 using ERP.Application.Interfaces;
 using ERP.Application.Requests.AuthenticationRequests;
 using ERP.Application.Responses;
@@ -48,6 +49,9 @@ public class AuthenticationService : IAuthenticationService
 
     public async Task<Result<TokenResponse>> AuthenticateAsync(LogInRequest request)
     {
+        await request.ValidateAsync();
+        if (!request.IsValid)
+            return Result.Invalid(request.ValidationResult.AsErrors());
 
         var user = await _repository.GetUserByEmail(request.Email);
 
