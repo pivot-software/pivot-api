@@ -20,12 +20,14 @@ public class AuthenticationService : IAuthenticationService
         (
         IDateTimeService dateTimeService,
         ITokenClaimsService tokenClaimsService,
-        IUserRepository repository
+        IUserRepository repository,
+        IUnitOfWork uow
         )
     {
         _dateTimeService = dateTimeService;
         _tokenClaimsService = tokenClaimsService;
         _repository = repository;
+        _uow = uow;
     }
 
     #endregion
@@ -35,6 +37,7 @@ public class AuthenticationService : IAuthenticationService
     private readonly IDateTimeService _dateTimeService;
     private readonly ITokenClaimsService _tokenClaimsService;
     private readonly IUserRepository _repository;
+    private readonly IUnitOfWork _uow;
 
     #endregion
 
@@ -45,22 +48,18 @@ public class AuthenticationService : IAuthenticationService
     {
 
         var user = await _repository.GetUserByEmail(request.Email);
-        if (user == null)
-            return Result.NotFound("A conta informada não existe.");
 
-
-        // Gerando as regras (roles).
         var claims = GenerateClaims(user);
-
-        // Gerando o token de acesso.
 
         var (accessToken, createdAt, expiresAt) = _tokenClaimsService.GenerateAccessToken(claims);
 
-        // Gerando o token de atualização.
         var refreshToken = _tokenClaimsService.GenerateRefreshToken();
 
-        return Result.Success(new TokenResponse(accessToken, createdAt, expiresAt, refreshToken));
+        user.AddToken(accessToken, refreshToken, expiresAt);
+        _repository.Update(user);
+        await _uow.CommitAsync();
 
+        return Result.Success(new TokenResponse(accessToken, createdAt, expiresAt, refreshToken));
     }
 
     private static Claim[] GenerateClaims(User user) => new[]

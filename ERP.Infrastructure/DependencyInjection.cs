@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Scrutor;
 using ERP.Domain.Repositories;
+using ERP.Infrastructure.Data;
 using ERP.Infrastructure.Services;
 using ERP.Shared.Abstractions;
 
@@ -13,7 +14,9 @@ public static class ConfigureServices
     public static IServiceCollection AddInfrastructure(this IServiceCollection services) =>
         services
             .AddScoped<IDateTimeService, DateTimeService>()
-            .AddScoped<ITokenClaimsService, JwtClaimService>();
+            .AddScoped<ITokenClaimsService, JwtClaimService>()
+            .AddScoped<IUnitOfWork, UnitOfWork>();
+
     public static IServiceCollection AddRepositories(this IServiceCollection services)
     {
         // Assembly scanning and decoration extensions for Microsoft.Extensions.DependencyInjection

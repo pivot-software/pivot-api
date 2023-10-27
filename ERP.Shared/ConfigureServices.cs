@@ -17,7 +17,6 @@ public static class ConfigureServices
             .AddOptionsWithValidation<InMemoryOptions>()
             .AddOptionsWithValidation<JwtOptions>();
 
-
     private static IServiceCollection AddOptionsWithValidation<TOptions>(this IServiceCollection services)
         where TOptions : class, IAppOptions
     {

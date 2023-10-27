@@ -24,6 +24,7 @@ public abstract class EfRepository<TEntity> : RepositoryBase<TEntity>, IAsyncRep
     public void Update(TEntity entity) =>
         DbSet.Update(entity);
 
+
     public void UpdateRange(IEnumerable<TEntity> entities) =>
         DbSet.UpdateRange(entities);
 
@@ -33,5 +34,6 @@ public abstract class EfRepository<TEntity> : RepositoryBase<TEntity>, IAsyncRep
     public void RemoveRange(IEnumerable<TEntity> entities) =>
         DbSet.RemoveRange(entities);
 
-
+    public virtual async Task<TEntity> GetByIdAsync(Guid id, bool readOnly = false) =>
+        readOnly ? await DbSet.AsNoTracking().FirstOrDefaultAsync(e => e.Id == id) : await DbSet.FindAsync(id);
 }
