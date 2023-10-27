@@ -1,5 +1,4 @@
 using ERP.Infrastructure;
-using ERP.Infrastructure.data;
 
 var builder = WebApplication.CreateBuilder(args);
 
