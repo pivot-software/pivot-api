@@ -1,6 +1,10 @@
+using System;
+
 namespace ERP.Shared.Abstractions;
 
-public class IRepository
+/// <summary>
+/// Interface marcadora para representar um repositório de dados.
+/// </summary>
+public interface IRepository : IDisposable
 {
-    
 }

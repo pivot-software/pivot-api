@@ -1,6 +1,8 @@
 namespace ERP.Shared.Messages;
 
-public class IRequest
+/// <summary>
+/// Classe base usada por solicitações da API.
+/// </summary>
+public interface IRequest
 {
-    
 }

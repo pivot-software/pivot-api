@@ -1,6 +1,3 @@
-namespace ERP.PublicApi.Models;
+namespace ERP.Api.Models;
 
-public class ApiError
-{
-    
-}
+public sealed record ApiError(string Message);

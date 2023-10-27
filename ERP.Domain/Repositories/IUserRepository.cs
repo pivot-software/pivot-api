@@ -1,6 +1,11 @@
+using System.Threading.Tasks;
+using ERP.Domain.Entities;
+using ERP.Domain.ValueObjects;
+using ERP.Shared.Abstractions;
+
 namespace ERP.Domain.Repositories;
 
-public class IUserRepository
+public interface IUserRepository : IAsyncRepository<User>
 {
-    
+    Task<User?> GetUserByEmail(string email);
 }

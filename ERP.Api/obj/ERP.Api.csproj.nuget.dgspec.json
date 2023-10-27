@@ -51,6 +51,18 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Ardalis.Result": {
+              "target": "Package",
+              "version": "[7.1.0, )"
+            },
+            "Microsoft.AspNetCore.Authorization": {
+              "target": "Package",
+              "version": "[7.0.13, )"
+            },
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[2.2.2, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.10, )"
@@ -117,6 +129,10 @@
               "target": "Package",
               "version": "[13.0.3, )"
             },
+            "Scrutor": {
+              "target": "Package",
+              "version": "[4.2.2, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.5.0, )"
@@ -174,7 +190,20 @@
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "/Users/jonatas/Documents/projects/ERP/ERP.Contracts/ERP.Contracts.csproj": {
+                "projectPath": "/Users/jonatas/Documents/projects/ERP/ERP.Contracts/ERP.Contracts.csproj"
+              },
+              "/Users/jonatas/Documents/projects/ERP/ERP.Domain/ERP.Domain.csproj": {
+                "projectPath": "/Users/jonatas/Documents/projects/ERP/ERP.Domain/ERP.Domain.csproj"
+              },
+              "/Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/ERP.Infrastructure.csproj": {
+                "projectPath": "/Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/ERP.Infrastructure.csproj"
+              },
+              "/Users/jonatas/Documents/projects/ERP/ERP.Shared/ERP.Shared.csproj": {
+                "projectPath": "/Users/jonatas/Documents/projects/ERP/ERP.Shared/ERP.Shared.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -186,6 +215,16 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "Ardalis.Result": {
+              "target": "Package",
+              "version": "[7.1.0, )"
+            },
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -280,7 +319,11 @@
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "/Users/jonatas/Documents/projects/ERP/ERP.Shared/ERP.Shared.csproj": {
+                "projectPath": "/Users/jonatas/Documents/projects/ERP/ERP.Shared/ERP.Shared.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -353,6 +396,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[2.2.2, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.13, )"
@@ -387,9 +434,17 @@
               "target": "Package",
               "version": "[7.0.6, )"
             },
+            "Scrutor": {
+              "target": "Package",
+              "version": "[4.2.2, )"
+            },
             "System.Data.SqlClient": {
               "target": "Package",
               "version": "[4.8.5, )"
+            },
+            "System.Threading.Tasks": {
+              "target": "Package",
+              "version": "[4.3.0, )"
             }
           },
           "imports": [

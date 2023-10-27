@@ -100,3 +100,8 @@
 /Users/jonatas/Documents/projects/ERP/ERP.Api/bin/Debug/net7.0/runtimes/win/lib/net7.0/System.Security.Cryptography.ProtectedData.dll
 /Users/jonatas/Documents/projects/ERP/ERP.Api/bin/Debug/net7.0/runtimes/win/lib/net7.0/System.Windows.Extensions.dll
 /Users/jonatas/Documents/projects/ERP/ERP.Api/bin/Debug/net7.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+/Users/jonatas/Documents/projects/ERP/ERP.Api/bin/Debug/net7.0/Ardalis.Result.dll
+/Users/jonatas/Documents/projects/ERP/ERP.Api/bin/Debug/net7.0/Microsoft.AspNetCore.Authorization.dll
+/Users/jonatas/Documents/projects/ERP/ERP.Api/bin/Debug/net7.0/Microsoft.AspNetCore.Metadata.dll
+/Users/jonatas/Documents/projects/ERP/ERP.Api/bin/Debug/net7.0/Scrutor.dll
+/Users/jonatas/Documents/projects/ERP/ERP.Api/bin/Debug/net7.0/AutoMapper.dll

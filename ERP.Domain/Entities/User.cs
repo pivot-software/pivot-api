@@ -1,13 +1,16 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using ERP.Shared.Abstractions;
 
 namespace ERP.Domain.Entities
 {
     [Table("users")]
-    public class User
+    public class User : BaseEntity, IAggregateRoot
     {
+        [Key]
         [Column("id")]
-        public Guid UserId { get; set; } = Guid.NewGuid();
+        public Guid Id { get; set; } = Guid.NewGuid();
 
         [Column("email")]
         public string Email { get; set; } = null!;
@@ -32,7 +35,5 @@ namespace ERP.Domain.Entities
 
         [Column("updated_at")]
         public DateTime? UpdatedAt { get; set; }
-
-
     }
 }

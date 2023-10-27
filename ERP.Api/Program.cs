@@ -1,19 +1,22 @@
+using System.IO.Compression;
 using ERP.Api.Extensions;
+using ERP.Application;
+using ERP.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using ERP.Infrastructure.Data.Context;
 using ERP.Shared;
 using ERP.Shared.AppSettings;
 using ERP.Shared.Extensions;
 using Microsoft.AspNetCore.ResponseCompression;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services
+    .Configure<GzipCompressionProviderOptions>(compressionOptions => compressionOptions.Level = CompressionLevel.Fastest)
+    .Configure<RouteOptions>(routeOptions => routeOptions.LowercaseUrls = true);
+
 var healthChecksBuilder = builder.Services.AddHealthChecks();
 
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient()
     .AddHttpContextAccessor()
     .AddResponseCompression(compressionOptions =>
@@ -22,7 +25,29 @@ builder.Services.AddHttpClient()
         compressionOptions.Providers.Add<GzipCompressionProvider>();
     })
     .ConfigureAppSettings()
-    .AddErpContext(healthChecksBuilder);
+    .AddRepositories()
+    .AddErpContext(healthChecksBuilder)
+    .AddServices()
+    .AddSwaggerGen();
+;
+
+builder.Services.AddDataProtection();
+
+builder.Services.AddControllers()
+    .ConfigureApiBehaviorOptions(options =>
+    {
+        options.SuppressMapClientErrors = true;
+        options.SuppressModelStateInvalidFilter = true;
+    });
+
+
+builder.Host.UseDefaultServiceProvider((context, serviceProviderOptions) =>
+{
+    serviceProviderOptions.ValidateScopes = context.HostingEnvironment.IsDevelopment();
+    serviceProviderOptions.ValidateOnBuild = true;
+});
+
+builder.WebHost.UseKestrel(kestrelOptions => kestrelOptions.AddServerHeader = false);
 
 var app = builder.Build();
 

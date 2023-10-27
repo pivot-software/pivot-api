@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ERP.Shared\ERP.Shared.csproj" />
+  </ItemGroup>
+
 </Project>
