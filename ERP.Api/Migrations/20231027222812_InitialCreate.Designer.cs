@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ERP.Api.Migrations
 {
     [DbContext(typeof(ErpContext))]
-    [Migration("20231027135727_Workspace")]
-    partial class Workspace
+    [Migration("20231027222812_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,13 +28,12 @@ namespace ERP.Api.Migrations
 
             modelBuilder.Entity("ERP.Domain.Entities.User", b =>
                 {
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
                     b.Property<string>("Avatar")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("avatar");
 
@@ -60,6 +59,18 @@ namespace ERP.Api.Migrations
                         .HasColumnType("text")
                         .HasColumnName("password");
 
+                    b.Property<DateTime>("RevokeIn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("revoke_in");
+
+                    b.Property<string>("Token")
+                        .HasColumnType("text")
+                        .HasColumnName("token");
+
+                    b.Property<string>("TokenRefresh")
+                        .HasColumnType("text")
+                        .HasColumnName("token_refresh");
+
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_at");
@@ -69,7 +80,7 @@ namespace ERP.Api.Migrations
                         .HasColumnType("text")
                         .HasColumnName("username");
 
-                    b.HasKey("UserId");
+                    b.HasKey("Id");
 
                     b.ToTable("users");
                 });

@@ -25,13 +25,12 @@ namespace ERP.Api.Migrations
 
             modelBuilder.Entity("ERP.Domain.Entities.User", b =>
                 {
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
                     b.Property<string>("Avatar")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("avatar");
 
@@ -57,6 +56,18 @@ namespace ERP.Api.Migrations
                         .HasColumnType("text")
                         .HasColumnName("password");
 
+                    b.Property<DateTime>("RevokeIn")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("revoke_in");
+
+                    b.Property<string>("Token")
+                        .HasColumnType("text")
+                        .HasColumnName("token");
+
+                    b.Property<string>("TokenRefresh")
+                        .HasColumnType("text")
+                        .HasColumnName("token_refresh");
+
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_at");
@@ -66,7 +77,7 @@ namespace ERP.Api.Migrations
                         .HasColumnType("text")
                         .HasColumnName("username");
 
-                    b.HasKey("UserId");
+                    b.HasKey("Id");
 
                     b.ToTable("users");
                 });
