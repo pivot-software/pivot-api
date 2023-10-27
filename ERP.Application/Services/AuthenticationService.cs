@@ -8,7 +8,6 @@ using ERP.Domain.Entities;
 using ERP.Domain.Repositories;
 using ERP.Shared.Abstractions;
 
-
 namespace ERP.Application.Services;
 
 public class AuthenticationService : IAuthenticationService
@@ -21,13 +20,15 @@ public class AuthenticationService : IAuthenticationService
         IDateTimeService dateTimeService,
         ITokenClaimsService tokenClaimsService,
         IUserRepository repository,
-        IUnitOfWork uow
+        IUnitOfWork uow,
+        IHashService hashService
         )
     {
         _dateTimeService = dateTimeService;
         _tokenClaimsService = tokenClaimsService;
         _repository = repository;
         _uow = uow;
+        _hashService = hashService;
     }
 
     #endregion
@@ -38,6 +39,7 @@ public class AuthenticationService : IAuthenticationService
     private readonly ITokenClaimsService _tokenClaimsService;
     private readonly IUserRepository _repository;
     private readonly IUnitOfWork _uow;
+    private readonly IHashService _hashService;
 
     #endregion
 
@@ -49,17 +51,27 @@ public class AuthenticationService : IAuthenticationService
 
         var user = await _repository.GetUserByEmail(request.Email);
 
-        var claims = GenerateClaims(user);
+        if (user == null)
+        {
+            return Result.NotFound("Nenhum usuário encontrado");
+        }
 
-        var (accessToken, createdAt, expiresAt) = _tokenClaimsService.GenerateAccessToken(claims);
+        if (_hashService.Compare(request.Password, user.Password))
+        {
+            var claims = GenerateClaims(user);
 
-        var refreshToken = _tokenClaimsService.GenerateRefreshToken();
+            var (accessToken, createdAt, expiresAt) = _tokenClaimsService.GenerateAccessToken(claims);
 
-        user.AddToken(accessToken, refreshToken, expiresAt);
-        _repository.Update(user);
-        await _uow.CommitAsync();
+            var refreshToken = _tokenClaimsService.GenerateRefreshToken();
 
-        return Result.Success(new TokenResponse(accessToken, createdAt, expiresAt, refreshToken));
+            user.AddToken(accessToken, refreshToken, expiresAt);
+            _repository.Update(user);
+            await _uow.CommitAsync();
+
+            return Result.Success(new TokenResponse(accessToken, createdAt, expiresAt, refreshToken));
+        }
+
+        return Result.Unauthorized();
     }
 
     private static Claim[] GenerateClaims(User user) => new[]

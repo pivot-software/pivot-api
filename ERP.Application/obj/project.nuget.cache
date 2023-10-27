@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "orbh1Bg+iZiOZTVw9nwF06MeUTUXCI+dKH0p6CRUTBbJ4uoey1sWk6F/1LhYi8mSJ2RX1QayPNEclaWNGRNDDg==",
+  "dgSpecHash": "u3a1yLSh1Yjun6zAVKMry67pm03eEzBZZr7r5Au++NUkaTG4ws3ZRpHHUeMRrreG2o5DgKDq5gUOaunw/txjrA==",
   "success": true,
   "projectFilePath": "/Users/jonatas/Documents/projects/ERP/ERP.Application/ERP.Application.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "/Users/jonatas/.nuget/packages/ardalis.result/7.1.0/ardalis.result.7.1.0.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/ardalis.result.fluentvalidation/7.1.0/ardalis.result.fluentvalidation.7.1.0.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
+    "/Users/jonatas/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/fluentvalidation/11.5.1/fluentvalidation.11.5.1.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/microsoft.aspnetcore.http/2.2.2/microsoft.aspnetcore.http.2.2.2.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/microsoft.aspnetcore.http.abstractions/2.2.0/microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",

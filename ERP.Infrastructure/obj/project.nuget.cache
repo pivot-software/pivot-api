@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "WxYW/3/f5qrNMlpVy9UqdkwFam852T8J+ryUaJnbhX7VbOoZn6LkDTXbIsRxsjoyR0vb8vWYMBC9bHN266BV/Q==",
+  "dgSpecHash": "4/ZgK16qm80IiFTRvrT+KyNg6bj698d5ZySqeGRYbwVBfZESyLGm/YIKnWJ0/JkJ73wQ+1c36DAfwymQnVtt2g==",
   "success": true,
   "projectFilePath": "/Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/ERP.Infrastructure.csproj",
   "expectedPackageFiles": [
     "/Users/jonatas/.nuget/packages/ardalis.guardclauses/4.1.1/ardalis.guardclauses.4.1.1.nupkg.sha512",
+    "/Users/jonatas/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/microsoft.aspnetcore.http/2.2.2/microsoft.aspnetcore.http.2.2.2.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/microsoft.aspnetcore.http.abstractions/2.2.0/microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",

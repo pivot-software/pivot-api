@@ -9,6 +9,7 @@
       "ERP.Infrastructure/1.0.0": {
         "dependencies": {
           "Ardalis.GuardClauses": "4.1.1",
+          "BCrypt.Net-Next": "4.0.3",
           "ERP.Domain": "1.0.0",
           "ERP.Shared": "1.0.0",
           "Microsoft.AspNetCore.Http": "2.2.2",
@@ -35,6 +36,14 @@
           "lib/net7.0/Ardalis.GuardClauses.dll": {
             "assemblyVersion": "4.1.1.0",
             "fileVersion": "4.1.1.0"
+          }
+        }
+      },
+      "BCrypt.Net-Next/4.0.3": {
+        "runtime": {
+          "lib/net6.0/BCrypt.Net-Next.dll": {
+            "assemblyVersion": "4.0.3.0",
+            "fileVersion": "4.0.3.0"
           }
         }
       },
@@ -895,6 +904,13 @@
       "sha512": "sha512-+UcJ2s+gf2wMNrwadCaHZV2DMcGgBU1t22A+jm40P4MHQRLy9hcleGy5xdVWd4dXZPa5Vlp4TG5xU2rhoDYrBA==",
       "path": "ardalis.guardclauses/4.1.1",
       "hashPath": "ardalis.guardclauses.4.1.1.nupkg.sha512"
+    },
+    "BCrypt.Net-Next/4.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-W+U9WvmZQgi5cX6FS5GDtDoPzUCV4LkBLkywq/kRZhuDwcbavOzcDAr3LXJFqHUi952Yj3LEYoWW0jbEUQChsA==",
+      "path": "bcrypt.net-next/4.0.3",
+      "hashPath": "bcrypt.net-next.4.0.3.nupkg.sha512"
     },
     "Humanizer.Core/2.14.1": {
       "type": "package",

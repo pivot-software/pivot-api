@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "RGRHarheBwVy0wY/Emt46dS2v62eI4YO7IGEsG+lBCjF9HYo/WIOceNTl2QMJ1hOqbDJ8whTcTm8JPtTEfWDQg==",
+  "dgSpecHash": "xYSHjGQf7NtvKLqCSfOwOeHcsW2OZZAUgG/AR9YJ8tbIrwu0MdyM06qNpSWqd7AXVzWs0/bloPmyodhYHxMnsQ==",
   "success": true,
   "projectFilePath": "/Users/jonatas/Documents/projects/ERP/ERP.Api/ERP.Api.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "/Users/jonatas/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/azure.core/1.25.0/azure.core.1.25.0.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/azure.identity/1.7.0/azure.identity.1.7.0.nupkg.sha512",
+    "/Users/jonatas/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/fluentvalidation/11.5.1/fluentvalidation.11.5.1.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/jonatas/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/7.0.13/microsoft.aspnetcore.authentication.jwtbearer.7.0.13.nupkg.sha512",

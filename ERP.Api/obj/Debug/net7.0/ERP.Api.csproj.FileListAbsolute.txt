@@ -109,3 +109,4 @@
 /Users/jonatas/Documents/projects/ERP/ERP.Api/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
 /Users/jonatas/Documents/projects/ERP/ERP.Api/bin/Debug/net7.0/Ardalis.Result.FluentValidation.dll
 /Users/jonatas/Documents/projects/ERP/ERP.Api/bin/Debug/net7.0/FluentValidation.dll
+/Users/jonatas/Documents/projects/ERP/ERP.Api/bin/Debug/net7.0/BCrypt.Net-Next.dll

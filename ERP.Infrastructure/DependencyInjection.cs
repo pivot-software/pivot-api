@@ -15,7 +15,8 @@ public static class ConfigureServices
         services
             .AddScoped<IDateTimeService, DateTimeService>()
             .AddScoped<ITokenClaimsService, JwtClaimService>()
-            .AddScoped<IUnitOfWork, UnitOfWork>();
+            .AddScoped<IUnitOfWork, UnitOfWork>()
+            .AddScoped<IHashService, BCryptHashService>();
 
     public static IServiceCollection AddRepositories(this IServiceCollection services)
     {
