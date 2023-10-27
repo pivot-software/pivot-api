@@ -37,6 +37,7 @@ public sealed class ErpContext : DbContext
     }
 
     public DbSet<User> Users => Set<User>();
+    public DbSet<Workspace> Workspaces => Set<Workspace>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
