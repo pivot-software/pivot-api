@@ -8,6 +8,7 @@ using ERP.Shared;
 using ERP.Shared.AppSettings;
 using ERP.Shared.Extensions;
 using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,7 @@ builder.Services
 
 var healthChecksBuilder = builder.Services.AddHealthChecks();
 
+
 builder.Services.AddHttpClient()
     .AddHttpContextAccessor()
     .AddResponseCompression(compressionOptions =>
@@ -25,14 +27,41 @@ builder.Services.AddHttpClient()
         compressionOptions.Providers.Add<GzipCompressionProvider>();
     })
     .ConfigureAppSettings()
+    .AddJwtBearer(builder.Configuration, builder.Environment.IsProduction())
+    .AddInfrastructure()
     .AddRepositories()
     .AddErpContext(healthChecksBuilder)
     .AddServices()
-    .AddSwaggerGen();
-;
+    .AddSwaggerGen(c =>
+    {
+        c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+        {
+            Name = "Authorization",
+            In = ParameterLocation.Header,
+            Type = SecuritySchemeType.ApiKey,
+            Scheme = "Bearer"
+        });
+
+        c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+        {
+            {
+                new OpenApiSecurityScheme
+                {
+                    Reference = new OpenApiReference
+                    {
+                        Type = ReferenceType.SecurityScheme,
+                        Id = "Bearer",
+                    },
+                    Scheme = "oauth2",
+                    Name = "Bearer",
+                    In = ParameterLocation.Header
+                },
+                new List<string>()
+            }
+        });
+    });
 
 builder.Services.AddDataProtection();
-
 builder.Services.AddControllers()
     .ConfigureApiBehaviorOptions(options =>
     {

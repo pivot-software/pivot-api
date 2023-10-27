@@ -55,6 +55,10 @@
               "target": "Package",
               "version": "[7.1.0, )"
             },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[7.0.13, )"
+            },
             "Microsoft.AspNetCore.Authorization": {
               "target": "Package",
               "version": "[7.0.13, )"
@@ -125,6 +129,10 @@
               "target": "Package",
               "version": "[7.0.0, )"
             },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
@@ -140,6 +148,10 @@
             "System.Configuration.ConfigurationManager": {
               "target": "Package",
               "version": "[7.0.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[7.0.3, )"
             },
             "npgsql.entityframeworkcore.postgresql": {
               "target": "Package",
@@ -220,9 +232,17 @@
               "target": "Package",
               "version": "[7.1.0, )"
             },
+            "Ardalis.Result.FluentValidation": {
+              "target": "Package",
+              "version": "[7.1.0, )"
+            },
             "AutoMapper": {
               "target": "Package",
               "version": "[12.0.1, )"
+            },
+            "System.Security.Claims": {
+              "target": "Package",
+              "version": "[4.3.0, )"
             }
           },
           "imports": [
@@ -396,6 +416,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Ardalis.GuardClauses": {
+              "target": "Package",
+              "version": "[4.1.1, )"
+            },
             "Microsoft.AspNetCore.Http": {
               "target": "Package",
               "version": "[2.2.2, )"
@@ -430,6 +454,10 @@
               "target": "Package",
               "version": "[7.0.0, )"
             },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
             "Npgsql": {
               "target": "Package",
               "version": "[7.0.6, )"
@@ -441,6 +469,10 @@
             "System.Data.SqlClient": {
               "target": "Package",
               "version": "[4.8.5, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[7.0.3, )"
             },
             "System.Threading.Tasks": {
               "target": "Package",

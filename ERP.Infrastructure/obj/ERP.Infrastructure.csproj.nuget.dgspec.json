@@ -102,6 +102,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Ardalis.GuardClauses": {
+              "target": "Package",
+              "version": "[4.1.1, )"
+            },
             "Microsoft.AspNetCore.Http": {
               "target": "Package",
               "version": "[2.2.2, )"
@@ -136,6 +140,10 @@
               "target": "Package",
               "version": "[7.0.0, )"
             },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
             "Npgsql": {
               "target": "Package",
               "version": "[7.0.6, )"
@@ -147,6 +155,10 @@
             "System.Data.SqlClient": {
               "target": "Package",
               "version": "[4.8.5, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[7.0.3, )"
             },
             "System.Threading.Tasks": {
               "target": "Package",

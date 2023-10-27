@@ -23,8 +23,6 @@ internal static class DbContextExtensions
         {
             var inMemoryOptions = serviceProvider.GetOptions<InMemoryOptions>();
             var strings = serviceProvider.GetOptions<ConnectionStrings>();
-            Console.WriteLine($"ConnectionString no construtor: {strings.Database}");
-            Console.WriteLine($"ConnectionString no construtor: {inMemoryOptions.Cache}");
 
             if (inMemoryOptions.Database)
             {

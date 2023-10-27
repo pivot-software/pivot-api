@@ -105,3 +105,7 @@
 /Users/jonatas/Documents/projects/ERP/ERP.Api/bin/Debug/net7.0/Microsoft.AspNetCore.Metadata.dll
 /Users/jonatas/Documents/projects/ERP/ERP.Api/bin/Debug/net7.0/Scrutor.dll
 /Users/jonatas/Documents/projects/ERP/ERP.Api/bin/Debug/net7.0/AutoMapper.dll
+/Users/jonatas/Documents/projects/ERP/ERP.Api/bin/Debug/net7.0/Ardalis.GuardClauses.dll
+/Users/jonatas/Documents/projects/ERP/ERP.Api/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/jonatas/Documents/projects/ERP/ERP.Api/bin/Debug/net7.0/Ardalis.Result.FluentValidation.dll
+/Users/jonatas/Documents/projects/ERP/ERP.Api/bin/Debug/net7.0/FluentValidation.dll

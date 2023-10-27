@@ -1,10 +1,10 @@
 using System.Net.Mime;
-using ERP.Application.Services;
 using Microsoft.AspNetCore.Mvc;
 using ERP.Api.Extensions;
+using ERP.Api.Models;
 using ERP.Application.Interfaces;
 using ERP.Application.Requests.AuthenticationRequests;
-using ERP.Shared.Messages;
+using ERP.Application.Responses;
 
 namespace ERP.Api.Controllers;
 
@@ -27,6 +27,10 @@ public class AuthController : ControllerBase
     [HttpPost("authenticate")]
     [Consumes(MediaTypeNames.Application.Json)]
     [Produces(MediaTypeNames.Application.Json)]
+    [ProducesResponseType(typeof(ApiResponse<TokenResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> Authenticate([FromBody]LogInRequest request)
     {
         return (await _service.AuthenticateAsync(request)).ToActionResult();
