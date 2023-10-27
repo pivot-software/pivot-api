@@ -15,3 +15,5 @@
 /Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/bin/Debug/net7.0/ERP.Domain.dll
 /Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/bin/Debug/net7.0/ERP.Domain.pdb
 /Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/obj/Debug/net7.0/ERP.Infrastructure.csproj.CopyComplete
+/Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/bin/Debug/net7.0/ERP.Shared.dll
+/Users/jonatas/Documents/projects/ERP/ERP.Infrastructure/bin/Debug/net7.0/ERP.Shared.pdb
