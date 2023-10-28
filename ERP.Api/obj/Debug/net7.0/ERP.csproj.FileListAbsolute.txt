@@ -1,7 +1,0 @@
-/Users/jonatas/Documents/projects/ERP/ERP/obj/Debug/net7.0/ERP.csproj.AssemblyReference.cache
-/Users/jonatas/Documents/projects/ERP/ERP/obj/Debug/net7.0/ERP.GeneratedMSBuildEditorConfig.editorconfig
-/Users/jonatas/Documents/projects/ERP/ERP/obj/Debug/net7.0/ERP.AssemblyInfoInputs.cache
-/Users/jonatas/Documents/projects/ERP/ERP/obj/Debug/net7.0/ERP.AssemblyInfo.cs
-/Users/jonatas/Documents/projects/ERP/ERP/obj/Debug/net7.0/ERP.csproj.CoreCompileInputs.cache
-/Users/jonatas/Documents/projects/ERP/ERP/obj/Debug/net7.0/ERP.MvcApplicationPartsAssemblyInfo.cs
-/Users/jonatas/Documents/projects/ERP/ERP/obj/Debug/net7.0/ERP.MvcApplicationPartsAssemblyInfo.cache

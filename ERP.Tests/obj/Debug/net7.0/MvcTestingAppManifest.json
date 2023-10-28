@@ -1,8 +1,0 @@
-{
-  "ERP.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/jonatas\/Documents\/projects\/ERP\/ERP.Api",
-  "ERP.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/jonatas\/Documents\/projects\/ERP\/ERP.Application",
-  "ERP.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/jonatas\/Documents\/projects\/ERP\/ERP.Contracts",
-  "ERP.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/jonatas\/Documents\/projects\/ERP\/ERP.Domain",
-  "ERP.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/jonatas\/Documents\/projects\/ERP\/ERP.Infrastructure",
-  "ERP.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/jonatas\/Documents\/projects\/ERP\/ERP.Shared"
-}
