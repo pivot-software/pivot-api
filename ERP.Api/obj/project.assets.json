@@ -2225,7 +2225,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "ERP.Shared": "1.0.0"
+          "ERP.Shared": "1.0.0",
+          "FluentValidation": "11.8.0"
         },
         "compile": {
           "bin/placeholder/ERP.Domain.dll": {}

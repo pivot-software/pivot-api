@@ -2207,7 +2207,8 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
-      "ERP.Shared >= 1.0.0"
+      "ERP.Shared >= 1.0.0",
+      "FluentValidation >= 11.8.0"
     ]
   },
   "packageFolders": {
@@ -2250,6 +2251,12 @@
     "frameworks": {
       "net7.0": {
         "targetAlias": "net7.0",
+        "dependencies": {
+          "FluentValidation": {
+            "target": "Package",
+            "version": "[11.8.0, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",
