@@ -8,6 +8,7 @@ using ERP.Application.Responses;
 using ERP.Domain.Entities;
 using ERP.Domain.Repositories;
 using ERP.Shared.Abstractions;
+using Microsoft.AspNetCore.Http;
 
 namespace ERP.Application.Services;
 
@@ -20,7 +21,7 @@ public class WorkspaceService : IWorkspaceServices
         (
         IDateTimeService dateTimeService,
         ITokenClaimsService tokenClaimsService,
-        IUserRepository repository,
+        IWorkspaceRepository repository,
         IUnitOfWork uow,
         IHashService hashService
         )
@@ -38,7 +39,7 @@ public class WorkspaceService : IWorkspaceServices
 
     private readonly IDateTimeService _dateTimeService;
     private readonly ITokenClaimsService _tokenClaimsService;
-    private readonly IUserRepository _repository;
+    private readonly IWorkspaceRepository _repository;
     private readonly IUnitOfWork _uow;
     private readonly IHashService _hashService;
 
@@ -47,16 +48,40 @@ public class WorkspaceService : IWorkspaceServices
 
     #region Methods
 
-    public async Task<Result<ConfigWorkspaceResponse>> CreateWorkspaceAsync(CreateWorkspaceRequest request)
+    public async Task<Result<ConfigWorkspaceResponse>> CreateWorkspaceAsync(CreateWorkspaceRequest request, ClaimsPrincipal user)
     {
         await request.ValidateAsync();
         if (!request.IsValid)
             return Result.Invalid(request.ValidationResult.AsErrors());
 
+        // Você pode acessar as reivindicações do usuário, como o nome, ID, etc.
+        var userId = user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
         var workspace = new Workspace();
-        
+        if (userId != null)
+        {
+            if (Guid.TryParse(userId, out Guid adminId))
+            {
+                workspace.AdminId = adminId;
+                workspace.BusinessName = request.BusinessName;
+                workspace.BusinessColor = request.BusinessColor;
+                workspace.BusinessLogo = request.BusinessLogo;
+                if (request.TemplateMode != null)
+                {
+                    workspace.TemplateMode = request.TemplateMode[0];
+                }
+            }
+            else
+            {
+                return Result.Error("Usuário não encontrado");
+            }
+        }
+
+        _repository.Add(workspace);
+        await _uow.CommitAsync();
+
         return Result.Success();
-        
+
         // var user = await _repository.GetUserByEmail(request.Email);
         //
         // if (user == null)

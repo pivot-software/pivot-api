@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Ardalis.Result;
 using ERP.Application.Requests.WorkspaceRequests;
 using ERP.Application.Responses;
@@ -6,5 +7,5 @@ namespace ERP.Application.Interfaces;
 
 public interface IWorkspaceServices : IAppService
 {
-    Task<Result<ConfigWorkspaceResponse>> CreateWorkspaceAsync(CreateWorkspaceRequest request);
+    Task<Result<ConfigWorkspaceResponse>> CreateWorkspaceAsync(CreateWorkspaceRequest request, ClaimsPrincipal user);
 }

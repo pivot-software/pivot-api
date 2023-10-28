@@ -34,6 +34,8 @@ public class WorkspaceController : ControllerBase
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> CreateWorkspace([FromBody]CreateWorkspaceRequest request)
     {
-        return (await _service.CreateWorkspaceAsync(request)).ToActionResult();
+        var user = HttpContext.User;
+
+        return (await _service.CreateWorkspaceAsync(request, user)).ToActionResult();
     }
 }

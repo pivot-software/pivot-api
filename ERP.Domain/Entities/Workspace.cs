@@ -8,7 +8,7 @@ namespace ERP.Domain.Entities
     public class Workspace : BaseEntity, IAggregateRoot
     {
         [Column("id")]
-        public Guid WorkspaceId { get; set; } = Guid.NewGuid();
+        public Guid Id { get; set; } = Guid.NewGuid();
 
         [Column("business_name")]
         public string BusinessName { get; set; } = null!;
@@ -20,7 +20,7 @@ namespace ERP.Domain.Entities
         public string BusinessColor { get; set; }
 
         [Column("template_mode")]
-        public char TemplateMode { get; set; }
+        public char TemplateMode { get; set; } = '0';
 
         [Column("admin_id")]
         public Guid AdminId { get; set; }
