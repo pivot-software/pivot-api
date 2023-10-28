@@ -8,6 +8,17 @@ namespace ERP.Domain.Entities
     [Table("users")]
     public class User : BaseEntity, IAggregateRoot
     {
+
+        public User(string email, string username, string password)
+        {
+            Email = email;
+            Username = username;
+            Password = password;
+            CreatedAt = DateTime.UtcNow;
+            RevokeIn = DateTime.MinValue;
+        }
+
+
         [Key]
         [Column("id")]
         public Guid Id { get; set; } = Guid.NewGuid();
@@ -23,13 +34,13 @@ namespace ERP.Domain.Entities
 
         [Column("avatar")]
         public string? Avatar { get; set; }
-        
+
         [Column("token")]
         public string? Token { get; set; }
-        
+
         [Column("token_refresh")]
         public string? TokenRefresh { get; set; }
-        
+
         [Column("revoke_in")]
         public DateTime RevokeIn { get; set; }
 
@@ -44,7 +55,7 @@ namespace ERP.Domain.Entities
 
         [Column("updated_at")]
         public DateTime? UpdatedAt { get; set; }
-        
+
         // Método para adicionar um token JWT
         public void AddToken(string token, string refreshToken, DateTime expiration)
         {
