@@ -15,4 +15,9 @@ public static class RuleBuilderExtensions
         ruleBuilder
             .Matches(RegexPatterns.EmailRegexPattern)
             .WithMessage("'{PropertyName}' é um endereço de e-mail inválido.");
+    
+    public static IRuleBuilderOptions<T, string> IsValidColor<T>(this IRuleBuilder<T, string> ruleBuilder) =>
+        ruleBuilder
+            .Matches(RegexPatterns.ColorRegexPattern)
+            .WithMessage("'{PropertyName}' é uma cor hexadecimal inválida.");
 }
