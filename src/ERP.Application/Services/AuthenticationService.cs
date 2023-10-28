@@ -75,7 +75,7 @@ public class AuthenticationService : IAuthenticationService
 
             return Result.Success(new TokenResponse(accessToken, createdAt, expiresAt, refreshToken));
         }
-
+        
         return Result.Unauthorized();
     }
     public async Task<Result<User>> CreateUser(SignupRequest request)
