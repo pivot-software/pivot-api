@@ -71,6 +71,7 @@ builder.Services.AddControllers()
     });
 
 
+
 builder.Host.UseDefaultServiceProvider((context, serviceProviderOptions) =>
 {
     serviceProviderOptions.ValidateScopes = context.HostingEnvironment.IsDevelopment();
