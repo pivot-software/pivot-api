@@ -75,8 +75,5 @@ namespace ERP.Domain.Entities
             RevokeIn = newExpiration;
         }
 
-        
-       
-
     }
 }

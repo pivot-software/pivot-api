@@ -57,19 +57,13 @@ public class WorkspaceService : IWorkspaceServices
         // Você pode acessar as reivindicações do usuário, como o nome, ID, etc.
         var userId = user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-        var workspace = new Workspace();
         if (userId != null)
         {
             if (Guid.TryParse(userId, out Guid adminId))
             {
-                workspace.AdminId = adminId;
-                workspace.BusinessName = request.BusinessName;
-                workspace.BusinessColor = request.BusinessColor;
-                workspace.BusinessLogo = request.BusinessLogo;
-                if (request.TemplateMode != null)
-                {
-                    workspace.TemplateMode = request.TemplateMode[0];
-                }
+                var workspace = new Workspace(request.BusinessName, request.BusinessLogo, request.BusinessColor, request.TemplateMode, adminId);
+                _repository.Add(workspace);
+                await _uow.CommitAsync();
             }
             else
             {
@@ -77,8 +71,6 @@ public class WorkspaceService : IWorkspaceServices
             }
         }
 
-        _repository.Add(workspace);
-        await _uow.CommitAsync();
 
         return Result.Success();
 
