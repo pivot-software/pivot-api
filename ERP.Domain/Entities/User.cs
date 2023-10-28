@@ -8,7 +8,6 @@ namespace ERP.Domain.Entities
     [Table("users")]
     public class User : BaseEntity, IAggregateRoot
     {
-
         public User(string email, string username, string password)
         {
             Email = email;
@@ -17,7 +16,6 @@ namespace ERP.Domain.Entities
             CreatedAt = DateTime.UtcNow;
             RevokeIn = DateTime.MinValue;
         }
-
 
         [Key]
         [Column("id")]

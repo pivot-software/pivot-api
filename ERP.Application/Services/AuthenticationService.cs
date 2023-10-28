@@ -4,6 +4,7 @@ using Ardalis.Result;
 using Ardalis.Result.FluentValidation;
 using ERP.Application.Interfaces;
 using ERP.Application.Requests.AuthenticationRequests;
+using ERP.Application.Requests.UsersRequest;
 using ERP.Application.Responses;
 using ERP.Domain.Entities;
 using ERP.Domain.Repositories;
@@ -76,6 +77,20 @@ public class AuthenticationService : IAuthenticationService
         }
 
         return Result.Unauthorized();
+    }
+    public async Task<Result<User>> CreateUser(SignupRequest request)
+    {
+        await request.ValidateAsync();
+
+        if (!request.IsValid)
+            return Result.Invalid(request.ValidationResult.AsErrors());
+
+        var newUser = new User(request.Email, request.Name, _hashService.Hash(request.Password));
+        
+        _repository.Add(newUser);
+        await _uow.CommitAsync();
+
+        return Result.Success(newUser);
     }
 
     private static Claim[] GenerateClaims(User user) => new[]
