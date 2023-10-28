@@ -1,5 +1,6 @@
 using System.IO.Compression;
 using ERP.Api.Extensions;
+using ERP.API.Extensions;
 using ERP.Application;
 using ERP.Infrastructure;
 using Microsoft.EntityFrameworkCore;
@@ -92,7 +93,7 @@ if (app.Environment.IsDevelopment())
 
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

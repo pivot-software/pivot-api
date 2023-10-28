@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
 namespace ERP.Shared.Abstractions;
 
 public interface IAsyncRepository<TEntity> : IRepository where TEntity : BaseEntity, IAggregateRoot

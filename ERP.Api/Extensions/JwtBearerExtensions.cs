@@ -3,11 +3,13 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using ERP.Shared.AppSettings;
 using ERP.Shared.Extensions;
 
-namespace ERP.Api.Extensions;
+namespace ERP.API.Extensions;
 
 [ExcludeFromCodeCoverage]
 internal static class JwtBearerExtensions
