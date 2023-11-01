@@ -35,13 +35,19 @@ namespace ERP.Domain.Entities
 
         [Column("token")]
         public string? Token { get; set; }
+        
+        [Column("profile_id")]
+        public int ProfileId { get; set; } 
+        
+        [Column("profile")]
+        public Profile Profile { get; set; } = null!; 
 
         [Column("token_refresh")]
         public string? TokenRefresh { get; set; }
 
         [Column("revoke_in")]
         public DateTime RevokeIn { get; set; }
-
+        
         [Column("created_at")]
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 

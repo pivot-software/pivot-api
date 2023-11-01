@@ -38,6 +38,8 @@ public sealed class ErpContext : DbContext
 
     public DbSet<User> Users => Set<User>();
     public DbSet<Workspace> Workspaces => Set<Workspace>();
+    public DbSet<Profile> Profiles => Set<Profile>();
+    public DbSet<Permissions> Permissions => Set<Permissions>();
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

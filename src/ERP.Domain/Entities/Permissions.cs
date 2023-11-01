@@ -1,8 +1,11 @@
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace ERP.Domain.Entities;
 
+[Table("permissions")]
 public class Permissions
 {
+    [Key]
     [Column("id")]
     public int Id { get; set; }
 
@@ -11,13 +14,16 @@ public class Permissions
 
     [Column("description")]
     public string Description { get; set; } = null!;
-    
+
     [Column("resource")]
     public string Resource { get; set; } = null!;
-    
+
     [Column("action_type")]
     public string ActionType { get; set; } = null!;
     
+    [Column("profiles_permissions")]
+    public List<ProfilePermission> ProfilePermissions { get; } = new();
+
     [Column("created_at")]
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
