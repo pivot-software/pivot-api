@@ -8,11 +8,12 @@ namespace ERP.Domain.Entities
     [Table("users")]
     public class User : BaseEntity, IAggregateRoot
     {
-        public User(string email, string username, string password)
+        public User(string email, string username, string password, int profileId)
         {
             Email = email;
             Username = username;
             Password = password;
+            ProfileId = profileId;
             CreatedAt = DateTime.UtcNow;
             RevokeIn = DateTime.MinValue;
         }

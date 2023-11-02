@@ -55,24 +55,6 @@ public class UserService : IUsersService
         if (!request.IsValid)
             return Result.Invalid(request.ValidationResult.AsErrors());
 
-        try
-        {
-            foreach (var email_user in request.Users)
-            {
-                int index = email_user.IndexOf('@');
-                string userName = email_user.Substring(0, index);
-                var new_user = new User(email_user, userName, _hashService.Hash(email_user));
-                _repository.Add(new_user);
-                await _uow.CommitAsync();
-            }
-
-            return Result.SuccessWithMessage("Pedido de envio enviado");
-        }
-        catch (Exception e)
-        {
-            throw;
-            return Result.Error();
-        }
         return Result.Unauthorized();
     }
 

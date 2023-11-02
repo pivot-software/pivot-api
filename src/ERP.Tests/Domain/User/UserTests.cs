@@ -14,7 +14,9 @@ public class UserTests
         var email = "test@example.com";
         var username = "testuser";
         var password = "password";
-        var user = new User(email, username, password);
+        var profileId = 1;
+
+        var user = new User(email, username, password, profileId);
         var token = "sampleToken";
         var refreshToken = "sampleRefreshToken";
         var expiration = DateTime.UtcNow.AddHours(1);
@@ -36,7 +38,8 @@ public class UserTests
         var email = "test@example.com";
         var username = "testuser";
         var password = "password";
-        var user = new User(email, username, password);
+        var profileId = 1;
+        var user = new User(email, username, password, profileId);
         user.Token = "sampleToken";
         user.TokenRefresh = "sampleRefreshToken";
         user.RevokeIn = DateTime.UtcNow.AddHours(1);
@@ -57,7 +60,8 @@ public class UserTests
         var email = "test@example.com";
         var username = "testuser";
         var password = "password";
-        var user = new User(email, username, password);
+        var profileId = 1;
+        var user = new User(email, username, password, profileId);
         user.Token = null;
         user.RevokeIn = DateTime.UtcNow.AddHours(-1);
 
@@ -75,7 +79,8 @@ public class UserTests
         var email = "test@example.com";
         var username = "testuser";
         var password = "password";
-        var user = new User(email, username, password);
+        var profileId = 1;
+        var user = new User(email, username, password, profileId);
         user.Token = "sampleToken";
         user.RevokeIn = DateTime.UtcNow.AddHours(1);
 
@@ -93,7 +98,9 @@ public class UserTests
         var email = "test@example.com";
         var username = "testuser";
         var password = "password";
-        var user = new User(email, username, password);
+        var profileId = 1;
+
+        var user = new User(email, username, password, profileId);
         var newToken = "newToken";
         var newRefreshToken = "newRefreshToken";
         var newExpiration = DateTime.UtcNow.AddHours(2);

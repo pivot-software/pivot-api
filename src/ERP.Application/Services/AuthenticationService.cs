@@ -75,7 +75,7 @@ public class AuthenticationService : IAuthenticationService
 
             return Result.Success(new TokenResponse(accessToken, createdAt, expiresAt, refreshToken));
         }
-        
+
         return Result.Unauthorized();
     }
     public async Task<Result<User>> CreateUser(SignupRequest request)
@@ -85,8 +85,8 @@ public class AuthenticationService : IAuthenticationService
         if (!request.IsValid)
             return Result.Invalid(request.ValidationResult.AsErrors());
 
-        var newUser = new User(request.Email, request.Name, _hashService.Hash(request.Password));
-        
+        var newUser = new User(request.Email, request.Name, _hashService.Hash(request.Password), request.ProfileId);
+
         _repository.Add(newUser);
         await _uow.CommitAsync();
 
