@@ -56,6 +56,7 @@ public class AuthenticationService : IAuthenticationService
 
         var user = await _repository.GetUserByEmail(request.Email);
 
+
         if (user == null)
         {
             return Result.NotFound("Nenhum usuário encontrado");

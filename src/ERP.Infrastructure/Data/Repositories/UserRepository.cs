@@ -1,6 +1,3 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ERP.Domain.Entities;
 using ERP.Domain.Repositories;
@@ -21,6 +18,13 @@ public class UserRepository : EfRepository<User>, IUserRepository
         var user = await DbSet.FirstOrDefaultAsync(u => u.Email == email);
 
         return user;
+    }
+
+    public async Task<IUserNotificationSettings> GetNotificationSettings(Guid id)
+    {
+        var settings = new UserNotificationSettings(true, true, true, true);
+
+        return await Task.FromResult(settings);
     }
    
 }
