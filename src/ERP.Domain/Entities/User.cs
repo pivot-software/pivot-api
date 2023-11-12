@@ -46,6 +46,15 @@ namespace ERP.Domain.Entities
         [Column("token_refresh")]
         public string? TokenRefresh { get; set; }
 
+        [Column("can_send_email")]
+        public bool? CanSendEmail { get; set; } = true;
+        
+        [Column("can_send_sms")]
+        public bool? CanSendSms { get; set; } = true;
+        
+        [Column("can_send_system_notification")]
+        public bool? CanSendSystemNotification { get; set; } = true;
+
         [Column("revoke_in")]
         public DateTime RevokeIn { get; set; }
         
