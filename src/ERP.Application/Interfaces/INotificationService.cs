@@ -2,7 +2,15 @@ using ERP.Domain.Entities;
 using ERP.Shared.Abstractions;
 namespace ERP.Application.Interfaces;
 
-public interface INotificationService: IAppService
+public enum NotificationType
 {
-    void sendNotification(User user, string message);
+    Sms,
+    Email,
+    SystemNotification
+}
+
+public interface INotificationService : IAppService
+{
+    void SendNotification(User user, string message, NotificationType? type);
+    void SendEmail(string email, string message, string subject);
 }

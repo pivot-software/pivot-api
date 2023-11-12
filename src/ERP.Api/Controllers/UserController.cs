@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using ERP.Api.Models;
 using ERP.Application.Interfaces;
 using ERP.Application.Requests.UsersRequests;
+using ERP.Application.Services;
 
 namespace ERP.Api.Controllers;
 
@@ -12,9 +13,14 @@ namespace ERP.Api.Controllers;
 public class UserController : ControllerBase
 {
     private readonly IUsersService _service;
+    private readonly INotificationService _notificationService;
 
-    public UserController(IUsersService service) =>
+    public UserController(IUsersService service, INotificationService notificationService)
+    {
         _service = service;
+        _notificationService = notificationService;
+    }
+
 
     /// <summary>
     /// Efetua a autenticação.
@@ -32,6 +38,15 @@ public class UserController : ControllerBase
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> AddUsersInMyWorkspace([FromBody]AddUsersInWorkspaceRequest request)
     {
+        
+        // Carregar o conteúdo do arquivo HTML
+        string templatePath = "../ERP.Application/Templates/InvitationTemplate.html";
+        string htmlContent = System.IO.File.ReadAllText(templatePath);
+
+        // Substituir placeholders no template
+        htmlContent = htmlContent.Replace("{{ConviteLink}}", "https://seusite.com/aceitar-convite");
+        
+        _notificationService.SendEmail(request.Users[0], htmlContent, "Convite para o workspace");
         return (await _service.AddUsersAsync(request)).ToActionResult();
     }
 
