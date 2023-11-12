@@ -39,12 +39,12 @@ namespace ERP.Api.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProfilePermission_PermissionsId",
-                table: "ProfilePermission",
+                table: "profile_permission",
                 column: "PermissionsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProfilePermission_profile_id",
-                table: "ProfilePermission",
+                table: "profile_permission",
                 column: "profile_id");
         }
 
@@ -52,7 +52,7 @@ namespace ERP.Api.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ProfilePermission");
+                name: "profile_permission");
         }
     }
 }
