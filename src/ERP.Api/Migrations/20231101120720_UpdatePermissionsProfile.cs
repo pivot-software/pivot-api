@@ -19,14 +19,14 @@ namespace ERP.Api.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     profile_id = table.Column<int>(type: "integer", nullable: false),
                     permission_id = table.Column<int>(type: "integer", nullable: false),
-                    PermissionsId = table.Column<int>(type: "integer", nullable: true)
+                    permision_id = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ProfilePermission", x => x.id);
                     table.ForeignKey(
-                        name: "FK_ProfilePermission_permissions_PermissionsId",
-                        column: x => x.PermissionsId,
+                        name: "FK_ProfilePermission_permissions_permision_id",
+                        column: x => x.permision_id,
                         principalTable: "permissions",
                         principalColumn: "id");
                     table.ForeignKey(
@@ -38,9 +38,9 @@ namespace ERP.Api.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProfilePermission_PermissionsId",
+                name: "IX_ProfilePermission_permision_id",
                 table: "profile_permission",
-                column: "PermissionsId");
+                column: "permision_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProfilePermission_profile_id",
