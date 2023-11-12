@@ -12,7 +12,7 @@ namespace ERP.Api.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "ProfilePermission",
+                name: "profile_permission",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
