@@ -12,5 +12,5 @@ public enum NotificationType
 public interface INotificationService : IAppService
 {
     void SendNotification(User user, string message, NotificationType? type);
-    void SendEmail(string email, string message, string subject);
+    void SendEmail(string emailToSend, string message, string subject);
 }
