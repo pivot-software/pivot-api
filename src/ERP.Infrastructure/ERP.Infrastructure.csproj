@@ -33,4 +33,8 @@
     <ProjectReference Include="..\ERP.Shared\ERP.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Configuration\" />
+  </ItemGroup>
+
 </Project>

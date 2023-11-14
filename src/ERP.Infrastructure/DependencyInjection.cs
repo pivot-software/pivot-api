@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Net.Mail;
 using Microsoft.Extensions.DependencyInjection;
 using Scrutor;
 using ERP.Domain.Repositories;
@@ -16,6 +17,7 @@ public static class ConfigureServices
             .AddScoped<IDateTimeService, DateTimeService>()
             .AddScoped<ITokenClaimsService, JwtClaimService>()
             .AddScoped<IUnitOfWork, UnitOfWork>()
+            .AddScoped<ISmtpSender, SmtpSender>()
             .AddScoped<IHashService, BCryptHashService>();
 
     public static IServiceCollection AddRepositories(this IServiceCollection services)

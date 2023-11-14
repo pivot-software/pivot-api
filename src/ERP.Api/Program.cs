@@ -32,6 +32,7 @@ builder.Services.AddHttpClient()
     .AddInfrastructure()
     .AddRepositories()
     .AddErpContext(healthChecksBuilder)
+    .AddSmtpSender(builder.Configuration)
     .AddServices()
     .AddSwaggerGen(c =>
     {
