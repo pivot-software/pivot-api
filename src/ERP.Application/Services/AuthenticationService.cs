@@ -79,7 +79,7 @@ public class AuthenticationService : IAuthenticationService
 
         return Result.Unauthorized();
     }
-    public async Task<Result<User>> CreateUser(SignupRequest request)
+    public async Task<Result<UserResponse>> CreateUser(SignupRequest request)
     {
         await request.ValidateAsync();
 
@@ -91,7 +91,9 @@ public class AuthenticationService : IAuthenticationService
         _repository.Add(newUser);
         await _uow.CommitAsync();
 
-        return Result.Success(newUser);
+        var userResponse = new UserResponse(newUser.Id, newUser.Email, newUser.Username);
+
+        return Result.Success(userResponse);
     }
 
     private static Claim[] GenerateClaims(User user) => new[]

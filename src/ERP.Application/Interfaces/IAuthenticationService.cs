@@ -10,5 +10,5 @@ namespace ERP.Application.Interfaces;
 public interface IAuthenticationService : IAppService
 {
     Task<Result<TokenResponse>> AuthenticateAsync(LogInRequest request);
-    Task<Result<User>> CreateUser(SignupRequest request);
+    Task<Result<UserResponse>> CreateUser(SignupRequest request);
 }
