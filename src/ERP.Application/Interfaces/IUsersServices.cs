@@ -9,4 +9,5 @@ namespace ERP.Application.Interfaces;
 public interface IUsersService : IAppService
 {
     Task<Result<string>> AddUsersAsync(AddUsersInWorkspaceRequest request);
+    Task<Result<GetUserResponse[]>> GetUsersAsync();
 }

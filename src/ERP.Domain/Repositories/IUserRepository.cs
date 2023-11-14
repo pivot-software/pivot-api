@@ -8,5 +8,5 @@ public interface IUserRepository : IAsyncRepository<User>
 {
     Task<User?> GetUserByEmail(string email);
     Task<IUserNotificationSettings> GetNotificationSettings(Guid userId);
-
+    Task<IEnumerable<User>> GetAll();
 }

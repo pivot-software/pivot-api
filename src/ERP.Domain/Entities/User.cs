@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using ERP.Shared.Abstractions;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace ERP.Domain.Entities
 {
@@ -43,7 +44,8 @@ namespace ERP.Domain.Entities
 
         [Column("profile_id")]
         public int ProfileId { get; set; }
-
+        
+        [JsonIgnore]
         [Column("profile")]
         public Profile Profile { get; set; } = null!;
 

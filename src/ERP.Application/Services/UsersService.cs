@@ -1,5 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Ardalis.Result;
 using Ardalis.Result.FluentValidation;
 using ERP.Application.Interfaces;
@@ -7,6 +9,7 @@ using ERP.Application.Requests.AuthenticationRequests;
 using ERP.Application.Requests.UsersRequest;
 using ERP.Application.Requests.UsersRequests;
 using ERP.Application.Responses;
+using ERP.Domain.DTO;
 using ERP.Domain.Entities;
 using ERP.Domain.Repositories;
 using ERP.Shared.Abstractions;
@@ -52,13 +55,30 @@ public class UserService : IUsersService
 
     #region Methods
 
+    public async Task<Result<GetUserResponse[]>> GetUsersAsync()
+    {
+        var users = await _repository.GetAll();
+
+
+        var userResponses = users.Select(user => new GetUserResponse(user.Id, user.Email,
+            user.Username,
+            user.Avatar,
+            new ProfileDto(user.Profile.Id, user.Profile.ProfileName, user.Profile.Description),
+            user.CreatedAt
+        )).ToArray();
+
+        return Result.Success(userResponses);
+
+
+    }
+
     public async Task<Result<string>> AddUsersAsync(AddUsersInWorkspaceRequest request)
     {
 
+        await request.ValidateAsync();
+
         if (!request.IsValid)
             return Result.Invalid(request.ValidationResult.AsErrors());
-
-        await request.ValidateAsync();
 
         // Carregar o conteúdo do arquivo HTML
         string templatePath = "../ERP.Application/Templates/InvitationTemplate.html";
@@ -68,8 +88,6 @@ public class UserService : IUsersService
         htmlContent = htmlContent.Replace("{{ConviteLink}}", "https://seusite.com/aceitar-convite");
 
         _notificationService.SendEmail(request.Users[0], htmlContent, "Convite para o workspace");
-
-
 
         return Result.SuccessWithMessage("Convites enviados com sucesso");
     }

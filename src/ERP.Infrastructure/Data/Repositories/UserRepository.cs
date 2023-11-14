@@ -26,5 +26,12 @@ public class UserRepository : EfRepository<User>, IUserRepository
 
         return await Task.FromResult(settings);
     }
-   
+
+    public async Task<IEnumerable<User>> GetAll()
+    {
+        return await DbSet.Include(b => b.Profile)
+            .AsNoTracking()
+            .ToListAsync();
+    }
+
 }
