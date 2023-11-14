@@ -9,6 +9,7 @@ using ERP.Application.Responses;
 using ERP.Domain.Entities;
 using ERP.Domain.Repositories;
 using ERP.Shared.Abstractions;
+using Microsoft.EntityFrameworkCore;
 
 namespace ERP.Application.Services;
 
@@ -89,11 +90,31 @@ public class AuthenticationService : IAuthenticationService
         var newUser = new User(request.Email, request.Name, _hashService.Hash(request.Password), request.ProfileId);
 
         _repository.Add(newUser);
-        await _uow.CommitAsync();
 
-        var userResponse = new UserResponse(newUser.Id, newUser.Email, newUser.Username);
+        try
+        {
 
-        return Result.Success(userResponse);
+            await _uow.CommitAsync();
+
+            var userResponse = new UserResponse(newUser.Id, newUser.Email, newUser.Username);
+
+            return Result.Success(userResponse);
+
+        }
+        catch (DbUpdateException ex)
+        {
+            var innerException = ex.InnerException;
+
+            // Verifique se a exceção interna é do tipo Npgsql.PostgresException e se é uma violação de chave única
+            if (innerException is Npgsql.PostgresException postgresException && postgresException.SqlState == "23505")
+            {
+                return Result.Error(postgresException.MessageText);
+            }
+
+            // Se não for uma violação de chave única, relançar a exceção
+            throw;
+        }
+
     }
 
     private static Claim[] GenerateClaims(User user) => new[]

@@ -2,9 +2,11 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using ERP.Shared.Abstractions;
+using Microsoft.EntityFrameworkCore;
 
 namespace ERP.Domain.Entities
 {
+    [Index(nameof(Email), IsUnique = true), Index(nameof(Username), IsUnique = true)]
     [Table("users")]
     public class User : BaseEntity, IAggregateRoot
     {
@@ -22,6 +24,8 @@ namespace ERP.Domain.Entities
         [Column("id")]
         public Guid Id { get; set; } = Guid.NewGuid();
 
+        [Required(ErrorMessage = "O campo 'Email' é obrigatório.")]
+        [EmailAddress(ErrorMessage = "Formato de email inválido.")]
         [Column("email")]
         public string Email { get; set; } = null!;
 
@@ -36,28 +40,28 @@ namespace ERP.Domain.Entities
 
         [Column("token")]
         public string? Token { get; set; }
-        
+
         [Column("profile_id")]
-        public int ProfileId { get; set; } 
-        
+        public int ProfileId { get; set; }
+
         [Column("profile")]
-        public Profile Profile { get; set; } = null!; 
+        public Profile Profile { get; set; } = null!;
 
         [Column("token_refresh")]
         public string? TokenRefresh { get; set; }
 
         [Column("can_send_email")]
         public bool? CanSendEmail { get; set; } = true;
-        
+
         [Column("can_send_sms")]
         public bool? CanSendSms { get; set; } = true;
-        
+
         [Column("can_send_system_notification")]
         public bool? CanSendSystemNotification { get; set; } = true;
 
         [Column("revoke_in")]
         public DateTime RevokeIn { get; set; }
-        
+
         [Column("created_at")]
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
