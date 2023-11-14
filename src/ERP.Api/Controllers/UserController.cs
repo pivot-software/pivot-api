@@ -13,12 +13,10 @@ namespace ERP.Api.Controllers;
 public class UserController : ControllerBase
 {
     private readonly IUsersService _service;
-    private readonly INotificationService _notificationService;
 
     public UserController(IUsersService service, INotificationService notificationService)
     {
         _service = service;
-        _notificationService = notificationService;
     }
 
 
@@ -38,15 +36,6 @@ public class UserController : ControllerBase
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> AddUsersInMyWorkspace([FromBody]AddUsersInWorkspaceRequest request)
     {
-        
-        // Carregar o conteúdo do arquivo HTML
-        string templatePath = "../ERP.Application/Templates/InvitationTemplate.html";
-        string htmlContent = System.IO.File.ReadAllText(templatePath);
-
-        // Substituir placeholders no template
-        htmlContent = htmlContent.Replace("{{ConviteLink}}", "https://seusite.com/aceitar-convite");
-        
-        _notificationService.SendEmail(request.Users[0], htmlContent, "Convite para o workspace");
         return (await _service.AddUsersAsync(request)).ToActionResult();
     }
 

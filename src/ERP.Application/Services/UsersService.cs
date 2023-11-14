@@ -24,7 +24,8 @@ public class UserService : IUsersService
         ITokenClaimsService tokenClaimsService,
         IUserRepository repository,
         IUnitOfWork uow,
-        IHashService hashService
+        IHashService hashService,
+        INotificationService notificationService
         )
     {
         _dateTimeService = dateTimeService;
@@ -32,6 +33,7 @@ public class UserService : IUsersService
         _repository = repository;
         _uow = uow;
         _hashService = hashService;
+        _notificationService = notificationService;
     }
 
     #endregion
@@ -43,6 +45,7 @@ public class UserService : IUsersService
     private readonly IUserRepository _repository;
     private readonly IUnitOfWork _uow;
     private readonly IHashService _hashService;
+    private readonly INotificationService _notificationService;
 
     #endregion
 
@@ -51,11 +54,24 @@ public class UserService : IUsersService
 
     public async Task<Result<string>> AddUsersAsync(AddUsersInWorkspaceRequest request)
     {
-        await request.ValidateAsync();
+
         if (!request.IsValid)
             return Result.Invalid(request.ValidationResult.AsErrors());
 
-        return Result.Unauthorized();
+        await request.ValidateAsync();
+
+        // Carregar o conteúdo do arquivo HTML
+        string templatePath = "../ERP.Application/Templates/InvitationTemplate.html";
+        string htmlContent = System.IO.File.ReadAllText(templatePath);
+
+        // Substituir placeholders no template
+        htmlContent = htmlContent.Replace("{{ConviteLink}}", "https://seusite.com/aceitar-convite");
+
+        _notificationService.SendEmail(request.Users[0], htmlContent, "Convite para o workspace");
+
+
+
+        return Result.SuccessWithMessage("Convites enviados com sucesso");
     }
 
     #endregion
