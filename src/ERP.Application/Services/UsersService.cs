@@ -1,18 +1,13 @@
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using Ardalis.Result;
 using Ardalis.Result.FluentValidation;
 using ERP.Application.Interfaces;
-using ERP.Application.Requests.AuthenticationRequests;
-using ERP.Application.Requests.UsersRequest;
 using ERP.Application.Requests.UsersRequests;
 using ERP.Application.Responses;
 using ERP.Domain.DTO;
 using ERP.Domain.Entities;
 using ERP.Domain.Repositories;
 using ERP.Shared.Abstractions;
+using Microsoft.EntityFrameworkCore;
 
 namespace ERP.Application.Services;
 
@@ -28,7 +23,8 @@ public class UserService : IUsersService
         IUserRepository repository,
         IUnitOfWork uow,
         IHashService hashService,
-        INotificationService notificationService
+        INotificationService notificationService,
+        IProfileRepository repositoryProfile
         )
     {
         _dateTimeService = dateTimeService;
@@ -37,6 +33,7 @@ public class UserService : IUsersService
         _uow = uow;
         _hashService = hashService;
         _notificationService = notificationService;
+        _repositoryProfile = repositoryProfile;
     }
 
     #endregion
@@ -46,6 +43,7 @@ public class UserService : IUsersService
     private readonly IDateTimeService _dateTimeService;
     private readonly ITokenClaimsService _tokenClaimsService;
     private readonly IUserRepository _repository;
+    private readonly IProfileRepository _repositoryProfile;
     private readonly IUnitOfWork _uow;
     private readonly IHashService _hashService;
     private readonly INotificationService _notificationService;
@@ -54,6 +52,47 @@ public class UserService : IUsersService
 
 
     #region Methods
+
+    public async Task<Result<String>> ChangeProfile(ChangeProfileRequest request)
+    {
+        try
+        {
+            await request.ValidateAsync();
+
+            if (!request.IsValid)
+                return Result.Invalid(request.ValidationResult.AsErrors());
+
+            var user = await _repository.GetUserById(request.UserId);
+            var newProfile = await _repositoryProfile.GetProfileById(request.ProfileId);
+
+            if (user == null)
+                return Result.NotFound("Usuário não encontrado");
+
+            if (newProfile == null)
+                return Result.NotFound("Perfil não encontrado");
+
+            user.ProfileId = request.ProfileId;
+            user.Profile = newProfile;
+
+            _repository.Update(user);
+
+            try
+            {
+                await _uow.CommitAsync();
+            }
+            catch (Exception ex)
+            {
+                return Result.Error($"Ocorreu um erro durante a confirmação das alterações: {ex.Message}");
+            }
+
+            return Result.Success("Perfil alterado com sucesso");
+        }
+        catch (Exception ex)
+        {
+            return Result.Error($"Ocorreu um erro durante a validação: {ex.Message}");
+        }
+
+    }
 
     public async Task<Result<GetUserResponse[]>> GetUsersAsync()
     {

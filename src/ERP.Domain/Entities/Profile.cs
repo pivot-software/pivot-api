@@ -1,9 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using ERP.Shared.Abstractions;
+
 namespace ERP.Domain.Entities;
 
 [Table("profile")]
-public class Profile
+public class Profile: BaseEntity, IAggregateRoot
 {
     [Key]
     [Column("id")]

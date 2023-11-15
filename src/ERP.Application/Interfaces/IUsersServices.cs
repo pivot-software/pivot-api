@@ -10,4 +10,5 @@ public interface IUsersService : IAppService
 {
     Task<Result<string>> AddUsersAsync(AddUsersInWorkspaceRequest request);
     Task<Result<GetUserResponse[]>> GetUsersAsync();
+    Task<Result<String>> ChangeProfile(ChangeProfileRequest request);
 }

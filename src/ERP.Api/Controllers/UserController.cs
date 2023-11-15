@@ -56,4 +56,22 @@ public class UserController : ControllerBase
         return (await _service.GetUsersAsync()).ToActionResult();
     }
 
+    /// <summary>
+    /// Muda o perfil de um usuário
+    /// </summary>
+    /// <param name="request"></param>
+    /// <response code="200">Retorna mensagem de sucesso</response>
+    /// <response code="400">Retorna lista de erros, se a requisição for inválida.</response>
+    [HttpPost("change-profile")]
+    [Consumes(MediaTypeNames.Application.Json)]
+    [Produces(MediaTypeNames.Application.Json)]
+    [ProducesResponseType(typeof(ApiResponse<AddUsersInWorkspaceRequest>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> ChangeProfile([FromBody]ChangeProfileRequest request)
+    {
+        return (await _service.ChangeProfile(request)).ToActionResult();
+    }
+
 }

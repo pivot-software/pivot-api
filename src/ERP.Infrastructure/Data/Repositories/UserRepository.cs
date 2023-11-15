@@ -34,4 +34,12 @@ public class UserRepository : EfRepository<User>, IUserRepository
             .ToListAsync();
     }
 
+    public async Task<User?> GetUserById(Guid id)
+    {
+        return await DbSet
+            .Include(b => b.Profile)
+            .AsNoTracking()
+            .FirstOrDefaultAsync(u => u.Id == id);
+    }
+
 }
