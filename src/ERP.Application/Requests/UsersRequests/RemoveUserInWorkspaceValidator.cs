@@ -1,19 +1,21 @@
-using System.ComponentModel.DataAnnotations;
-using ERP.Shared;
-using ERP.Shared.Messages;
-namespace ERP.Application.Requests.UsersRequests;
+using FluentValidation;
+using System;
 
-public class RemoveUserInWorkspace : BaseRequestWithValidation
+namespace ERP.Application.Requests.UsersRequests
 {
-    public RemoveUserInWorkspace(Guid userId)
+    public class RemoveUserInWorkspaceValidator : AbstractValidator<ChangeProfileRequest>
     {
-        UserId = userId;
+        public RemoveUserInWorkspaceValidator()
+        {
+            RuleFor(req => req.UserId)
+                .NotEmpty()
+                .Must(BeAValidGuid)
+                .WithMessage("UserId is not valid");
+        }
+
+        private bool BeAValidGuid(Guid userId)
+        {
+            return userId != Guid.Empty;
+        }
     }
-
-    [Required]
-    public Guid UserId { get; }
-
-
-    public override async Task ValidateAsync() =>
-        ValidationResult = await LazyValidator.ValidateAsync<ChangeProfileRequestValidator>(this);
 }

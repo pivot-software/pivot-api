@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Ardalis.Result;
 using ERP.Application.Requests.AuthenticationRequests;
 using ERP.Application.Requests.UsersRequests;
@@ -11,4 +12,5 @@ public interface IUsersService : IAppService
     Task<Result<string>> AddUsersAsync(AddUsersInWorkspaceRequest request);
     Task<Result<GetUserResponse[]>> GetUsersAsync();
     Task<Result<String>> ChangeProfile(ChangeProfileRequest request);
+    Task<Result<String>> RemoveUserInWorkspace(Guid request, ClaimsPrincipal user);
 }

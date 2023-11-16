@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Ardalis.Result;
 using Ardalis.Result.FluentValidation;
 using ERP.Application.Interfaces;
@@ -52,6 +53,48 @@ public class UserService : IUsersService
 
 
     #region Methods
+
+    public async Task<Result<String>> RemoveUserInWorkspace(Guid request, ClaimsPrincipal user)
+    {
+        try
+        {
+            var userObject = await _repository.GetUserById(request);
+
+            if (userObject == null)
+                return Result.NotFound("Usuário não encontrado");
+
+            var userId = user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (userId != null)
+            {
+                if (Guid.TryParse(userId, out Guid adminId))
+                {
+                    userObject.DeletedBy = adminId;
+                    _repository.Update(userObject);
+                }
+                else
+                {
+                    return Result.Error("Nenhum token informado");
+                }
+            }
+
+            try
+            {
+                await _uow.CommitAsync();
+            }
+            catch (Exception ex)
+            {
+                return Result.Error($"Ocorreu um erro durante a confirmação das alterações: {ex.Message}");
+            }
+
+            return Result.Success("Usuário removido com sucesso");
+        }
+        catch (Exception ex)
+        {
+            return Result.Error($"Ocorreu um erro durante a validação: {ex.Message}");
+        }
+
+    }
 
     public async Task<Result<String>> ChangeProfile(ChangeProfileRequest request)
     {

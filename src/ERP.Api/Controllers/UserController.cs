@@ -74,4 +74,25 @@ public class UserController : ControllerBase
         return (await _service.ChangeProfile(request)).ToActionResult();
     }
 
+    /// <summary>
+    /// Remove usuário do workspace
+    /// </summary>
+    /// <param name="request"></param>
+    /// <response code="200">Retorna mensagem de sucesso</response>
+    /// <response code="400">Retorna lista de erros, se a requisição for inválida.</response>
+    [HttpDelete("remove-user")]
+    [Consumes(MediaTypeNames.Application.Json)]
+    [Produces(MediaTypeNames.Application.Json)]
+    [ProducesResponseType(typeof(ApiResponse<RemoveUserInWorkspaceRequest>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> RemoveUserInWorkspace([FromQuery(Name = "userId")] Guid request)
+    {
+
+        var user = HttpContext.User;
+
+        return (await _service.RemoveUserInWorkspace(request, user)).ToActionResult();
+    }
+
 }
