@@ -34,6 +34,13 @@ builder.Services.AddHttpClient()
     .AddErpContext(healthChecksBuilder)
     .AddSmtpSender(builder.Configuration)
     .AddServices()
+    .AddCors(options =>
+    {
+        options.AddPolicy("MyCorsPolicy",
+            builder => builder.WithOrigins("http://localhost:9000")
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+    })
     .AddSwaggerGen(c =>
     {
         c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -97,6 +104,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.UseCors("MyCorsPolicy");
 
 var inMemoryOptions = serviceScope.ServiceProvider.GetOptions<InMemoryOptions>();
 
