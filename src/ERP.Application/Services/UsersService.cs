@@ -9,16 +9,16 @@ using ERP.Domain.Entities;
 using ERP.Domain.Repositories;
 using ERP.Shared.Abstractions;
 using Microsoft.EntityFrameworkCore;
+using PagedList;
 
 namespace ERP.Application.Services;
 
 public class UserService : IUsersService
 {
-
     #region Constructor
 
     public UserService
-        (
+    (
         IDateTimeService dateTimeService,
         ITokenClaimsService tokenClaimsService,
         IUserRepository repository,
@@ -26,7 +26,7 @@ public class UserService : IUsersService
         IHashService hashService,
         INotificationService notificationService,
         IProfileRepository repositoryProfile
-        )
+    )
     {
         _dateTimeService = dateTimeService;
         _tokenClaimsService = tokenClaimsService;
@@ -93,7 +93,6 @@ public class UserService : IUsersService
         {
             return Result.Error($"Ocorreu um erro durante a validação: {ex.Message}");
         }
-
     }
 
     public async Task<Result<String>> ChangeProfile(ChangeProfileRequest request)
@@ -134,29 +133,55 @@ public class UserService : IUsersService
         {
             return Result.Error($"Ocorreu um erro durante a validação: {ex.Message}");
         }
-
     }
 
-    public async Task<Result<GetUserResponse[]>> GetUsersAsync()
+    public async Task<Result<IPagedList<GetUserResponse[]>>> GetUsersAsync()
     {
-        var users = await _repository.GetAll();
+        try
+        {
+            var users = await _repository.GetAll();
 
+            var userResponses = users
+                .Select(user => new GetUserResponse(user.Id, user.Email,
+                    user.Username,
+                    user.Avatar,
+                    new ProfileDto(user.Profile.Id, user.Profile.ProfileName, user.Profile.Description),
+                    user.CreatedAt
+                ));
 
-        var userResponses = users.Select(user => new GetUserResponse(user.Id, user.Email,
-            user.Username,
-            user.Avatar,
-            new ProfileDto(user.Profile.Id, user.Profile.ProfileName, user.Profile.Description),
-            user.CreatedAt
-        )).ToArray();
+            var sortOrder = "desc";
 
-        return Result.Success(userResponses);
+            // Ordenação ascendente ou descendente com base no nome de usuário
+            switch (sortOrder?.ToLower())
+            {
+                case "desc":
+                    userResponses = userResponses.OrderByDescending(userResponse => userResponse.Username);
+                    break;
+                default:
+                    userResponses = userResponses.OrderBy(userResponse => userResponse.Username);
+                    break;
+            }
 
+            var pageNumber = 1;
+            var pageSize = 10;
 
+            var pagedUserResponses = userResponses.ToPagedList(pageNumber, pageSize);
+
+            // Transforma itens individuais em arrays
+            var pagedArrays = pagedUserResponses
+                .Select(u => new GetUserResponse[] { u })
+                .ToPagedList(pageNumber, pageSize);
+
+            return Result.Success(pagedArrays);
+        }
+        catch (Exception ex)
+        {
+            return Result.Error(ex.Message);
+        }
     }
 
     public async Task<Result<string>> AddUsersAsync(AddUsersInWorkspaceRequest request)
     {
-
         await request.ValidateAsync();
 
         if (!request.IsValid)
@@ -175,5 +200,4 @@ public class UserService : IUsersService
     }
 
     #endregion
-
 }
