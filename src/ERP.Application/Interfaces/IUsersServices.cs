@@ -11,7 +11,7 @@ namespace ERP.Application.Interfaces;
 public interface IUsersService : IAppService
 {
     Task<Result<string>> AddUsersAsync(AddUsersInWorkspaceRequest request);
-   Task<Result<IPagedList<GetUserResponse[]>>> GetUsersAsync();
+   Task<Result<GetUserResponsePaginated>> GetUsersAsync();
     Task<Result<String>> ChangeProfile(ChangeProfileRequest request);
     Task<Result<String>> RemoveUserInWorkspace(Guid request, ClaimsPrincipal user);
 }

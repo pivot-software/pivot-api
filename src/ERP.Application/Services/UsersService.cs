@@ -135,7 +135,7 @@ public class UserService : IUsersService
         }
     }
 
-    public async Task<Result<IPagedList<GetUserResponse[]>>> GetUsersAsync()
+    public async Task<Result<GetUserResponsePaginated>> GetUsersAsync()
     {
         try
         {
@@ -164,15 +164,18 @@ public class UserService : IUsersService
 
             var pageNumber = 1;
             var pageSize = 10;
+            var totalUsers = userResponses.Count();
 
             var pagedUserResponses = userResponses.ToPagedList(pageNumber, pageSize);
 
-            // Transforma itens individuais em arrays
-            var pagedArrays = pagedUserResponses
-                .Select(u => new GetUserResponse[] { u })
-                .ToPagedList(pageNumber, pageSize);
+            var isLastPage = userResponses.Last().Id == pagedUserResponses.Last().Id;
 
-            return Result.Success(pagedArrays);
+            Console.Write(isLastPage);
+
+            var response =
+                new GetUserResponsePaginated(pagedUserResponses, isLastPage, sortOrder, pageNumber, totalUsers);
+
+            return Result.Success(response);
         }
         catch (Exception ex)
         {
