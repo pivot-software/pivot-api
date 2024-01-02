@@ -135,7 +135,7 @@ public class UserService : IUsersService
         }
     }
 
-    public async Task<Result<GetUserResponsePaginated>> GetUsersAsync()
+    public async Task<Result<GetUserResponsePaginated>> GetUsersAsync(GetAllUsersPaginatedRequest request)
     {
         try
         {
@@ -149,7 +149,7 @@ public class UserService : IUsersService
                     user.CreatedAt
                 ));
 
-            var sortOrder = "desc";
+            var sortOrder = request.Direction;
 
             // Ordenação ascendente ou descendente com base no nome de usuário
             switch (sortOrder?.ToLower())
@@ -162,15 +162,13 @@ public class UserService : IUsersService
                     break;
             }
 
-            var pageNumber = 1;
-            var pageSize = 10;
+            var pageNumber = request.Page;
+            var pageSize = request.PageSize;
             var totalUsers = userResponses.Count();
 
             var pagedUserResponses = userResponses.ToPagedList(pageNumber, pageSize);
 
             var isLastPage = userResponses.Last().Id == pagedUserResponses.Last().Id;
-
-            Console.Write(isLastPage);
 
             var response =
                 new GetUserResponsePaginated(pagedUserResponses, isLastPage, sortOrder, pageNumber, totalUsers);

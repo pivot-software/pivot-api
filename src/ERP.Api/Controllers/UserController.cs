@@ -51,9 +51,10 @@ public class UserController : ControllerBase
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> ListAllUsersInWorkspace()
+    public async Task<IActionResult> ListAllUsersInWorkspace([FromQuery]GetAllUsersPaginatedRequest request)
     {
-        return (await _service.GetUsersAsync()).ToActionResult();
+        Console.Write(request);
+        return (await _service.GetUsersAsync(request)).ToActionResult();
     }
 
     /// <summary>
