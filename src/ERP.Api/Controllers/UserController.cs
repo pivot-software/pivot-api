@@ -20,7 +20,7 @@ public class UserController : ControllerBase
     }
 
     /// <summary>
-    /// Efetua a autenticação.
+    /// Efetua a autenticação.  
     /// </summary>
     /// <param name="request">Endereço de e-mail e senha.</param>
     /// <response code="200">Retorna o token de acesso.</response>
