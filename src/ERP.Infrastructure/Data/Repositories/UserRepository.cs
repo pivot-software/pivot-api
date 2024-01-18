@@ -23,7 +23,7 @@ public class UserRepository : EfRepository<User>, IUserRepository
     public async Task<IUserNotificationSettings> GetNotificationSettings(Guid id)
     {
         var settings = new UserNotificationSettings(true, true, true, true);
-
+    
         return await Task.FromResult(settings);
     }
 
