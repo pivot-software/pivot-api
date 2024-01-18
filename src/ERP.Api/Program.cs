@@ -8,17 +8,37 @@ using ERP.Infrastructure.Data.Context;
 using ERP.Shared;
 using ERP.Shared.AppSettings;
 using ERP.Shared.Extensions;
+using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+#region [Healthcheck]
+
+builder.Services.AddHealthChecks()
+    .AddNpgSql("Server=localhost;Database=ERP;User Id=postgres;Password=jl99oe99",
+        name: "postgreSQL", tags: new string[] { "db", "data" });
+// .AddRedis(builder.Configuration.GetSection("DatabaseSettings:ConnectionStringRedis").Value,
+//     name: "redis", tags: new string[] { "cache", "data" });
+
+builder.Services.AddHealthChecksUI(opt =>
+{
+    opt.SetEvaluationTimeInSeconds(15); //time in seconds between check
+    opt.MaximumHistoryEntriesPerEndpoint(60); //maximum history of checks
+    opt.SetApiMaxActiveRequests(1); //api requests concurrency
+
+    opt.AddHealthCheckEndpoint("default api", "/health"); //map health check api
+}).AddInMemoryStorage();
+
+#endregion
+
+
 builder.Services
-    .Configure<GzipCompressionProviderOptions>(compressionOptions => compressionOptions.Level = CompressionLevel.Fastest)
+    .Configure<GzipCompressionProviderOptions>(
+        compressionOptions => compressionOptions.Level = CompressionLevel.Fastest)
     .Configure<RouteOptions>(routeOptions => routeOptions.LowercaseUrls = true);
-
-var healthChecksBuilder = builder.Services.AddHealthChecks();
-
 
 builder.Services.AddHttpClient()
     .AddHttpContextAccessor()
@@ -31,7 +51,7 @@ builder.Services.AddHttpClient()
     .AddJwtBearer(builder.Configuration, builder.Environment.IsProduction())
     .AddInfrastructure()
     .AddRepositories()
-    .AddErpContext(healthChecksBuilder)
+    .AddErpContext()
     .AddSmtpSender(builder.Configuration)
     .AddServices()
     .AddCors(options =>
@@ -70,6 +90,7 @@ builder.Services.AddHttpClient()
         });
     });
 
+
 builder.Services.AddDataProtection();
 builder.Services.AddControllers()
     .ConfigureApiBehaviorOptions(options =>
@@ -98,7 +119,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+#region [Healthcheck]
 
+app.UseHealthChecks("/health", new HealthCheckOptions
+{
+    Predicate = _ => true,
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
+}).UseHealthChecksUI(h => h.UIPath = "/health-ui");
+
+#endregion
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
@@ -138,7 +167,6 @@ try
             app.Logger.LogInformation("----- SQL Server: Migrações estão em dia");
         }
     }
-
 }
 catch (Exception ex)
 {

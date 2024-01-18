@@ -17,7 +17,7 @@ internal static class DbContextExtensions
 
     private static readonly string[] DbRelationalTags = { "database", "ef-core", "sql-server", "relational" };
 
-    internal static IServiceCollection AddErpContext(this IServiceCollection services, IHealthChecksBuilder healthChecksBuilder)
+    internal static IServiceCollection AddErpContext(this IServiceCollection services)
     {
         services.AddDbContext<ErpContext>((serviceProvider, optionsBuilder) =>
         {
@@ -66,12 +66,6 @@ internal static class DbContextExtensions
                 optionsBuilder.EnableSensitiveDataLogging();
             }
         });
-
-        // Verificador de saúde da base de dados.
-        healthChecksBuilder.AddDbContextCheck<ErpContext>(
-            tags: DbRelationalTags,
-            customTestQuery: (context, cancellationToken) =>
-                context.Users.AsNoTracking().AnyAsync(cancellationToken));
         return services;
+        }
     }
-}
