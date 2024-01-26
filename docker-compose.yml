@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  webapi:
+    image: mcr.microsoft.com/dotnet/sdk:8.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    depends_on:
+      - database
+    networks:
+      - backend
+#    restart: always
+
+  database:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: pivot123
+      POSTGRES_DB: Pivot
+    ports:
+      - "5432"
+    networks:
+      - backend
+
+networks:
+  backend:

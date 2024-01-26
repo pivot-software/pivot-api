@@ -1,0 +1,8 @@
+{
+  "ERP.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "~",
+  "ERP.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "~",
+  "ERP.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "~",
+  "ERP.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "~",
+  "ERP.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "~",
+  "ERP.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "~"
+}

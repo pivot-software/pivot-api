@@ -15,24 +15,24 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-#region [Healthcheck]
-
-builder.Services.AddHealthChecks()
-    .AddNpgSql("Server=localhost;Database=ERP;User Id=postgres;Password=jl99oe99",
-        name: "postgreSQL", tags: new string[] { "db", "data" });
-// .AddRedis(builder.Configuration.GetSection("DatabaseSettings:ConnectionStringRedis").Value,
-//     name: "redis", tags: new string[] { "cache", "data" });
-
-builder.Services.AddHealthChecksUI(opt =>
-{
-    opt.SetEvaluationTimeInSeconds(15); //time in seconds between check
-    opt.MaximumHistoryEntriesPerEndpoint(60); //maximum history of checks
-    opt.SetApiMaxActiveRequests(1); //api requests concurrency
-
-    opt.AddHealthCheckEndpoint("default api", "/health"); //map health check api
-}).AddInMemoryStorage();
-
-#endregion
+// #region [Healthcheck]
+//
+// builder.Services.AddHealthChecks()
+//     .AddNpgSql("Server=localhost;Database=ERP;User Id=postgres;Password=jl99oe99",
+//         name: "postgreSQL", tags: new string[] { "db", "data" });
+// // .AddRedis(builder.Configuration.GetSection("DatabaseSettings:ConnectionStringRedis").Value,
+// //     name: "redis", tags: new string[] { "cache", "data" });
+//
+// builder.Services.AddHealthChecksUI(opt =>
+// {
+//     opt.SetEvaluationTimeInSeconds(15); //time in seconds between check
+//     opt.MaximumHistoryEntriesPerEndpoint(60); //maximum history of checks
+//     opt.SetApiMaxActiveRequests(1); //api requests concurrency
+//
+//     opt.AddHealthCheckEndpoint("default api", "/health"); //map health check api
+// }).AddInMemoryStorage();
+//
+// #endregion
 
 
 builder.Services
@@ -57,7 +57,7 @@ builder.Services.AddHttpClient()
     .AddCors(options =>
     {
         options.AddPolicy("MyCorsPolicy",
-            builder => builder.WithOrigins("http://localhost:9000")
+            builder => builder.WithOrigins("http://localhost:8080")
                 .AllowAnyMethod()
                 .AllowAnyHeader());
     })
@@ -117,17 +117,24 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    #region [Healthcheck]
+
+    app.UseHealthChecks("/health", new HealthCheckOptions
+    {
+        Predicate = _ => true,
+        ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
+    }).UseHealthChecksUI(options =>
+    {
+        options.UIPath = "/health-ui";
+        options.ApiPath = "/health-api";
+        options.UseRelativeApiPath = false;
+        options.UseRelativeResourcesPath = false;
+    });
+
+    #endregion
 }
 
-#region [Healthcheck]
 
-app.UseHealthChecks("/health", new HealthCheckOptions
-{
-    Predicate = _ => true,
-    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
-}).UseHealthChecksUI(h => h.UIPath = "/health-ui");
-
-#endregion
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
