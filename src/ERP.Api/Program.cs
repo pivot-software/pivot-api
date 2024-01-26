@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Hosting;
 using System.IO.Compression;
 using ERP.Api.Extensions;
 using ERP.API.Extensions;
@@ -14,25 +15,6 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// #region [Healthcheck]
-//
-// builder.Services.AddHealthChecks()
-//     .AddNpgSql("Server=localhost;Database=ERP;User Id=postgres;Password=jl99oe99",
-//         name: "postgreSQL", tags: new string[] { "db", "data" });
-// // .AddRedis(builder.Configuration.GetSection("DatabaseSettings:ConnectionStringRedis").Value,
-// //     name: "redis", tags: new string[] { "cache", "data" });
-//
-// builder.Services.AddHealthChecksUI(opt =>
-// {
-//     opt.SetEvaluationTimeInSeconds(15); //time in seconds between check
-//     opt.MaximumHistoryEntriesPerEndpoint(60); //maximum history of checks
-//     opt.SetApiMaxActiveRequests(1); //api requests concurrency
-//
-//     opt.AddHealthCheckEndpoint("default api", "/health"); //map health check api
-// }).AddInMemoryStorage();
-//
-// #endregion
 
 
 builder.Services

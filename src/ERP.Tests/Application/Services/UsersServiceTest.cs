@@ -1,7 +1,5 @@
 using System;
-using System.Security.Claims;
 using System.Threading.Tasks;
-using Ardalis.Result;
 using ERP.Application.Interfaces;
 using ERP.Application.Requests.UsersRequests;
 using ERP.Application.Services;
@@ -21,8 +19,6 @@ public class UsersServiceTest
     private readonly Mock<IUnitOfWork> _unitOfWorkMock;
     private readonly Mock<INotificationService> _notificationServiceMock;
     private readonly Mock<IProfileRepository> _profileRepositoryMock;
-
-
 
     public UsersServiceTest()
     {

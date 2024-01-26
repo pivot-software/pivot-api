@@ -1,18 +1,24 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+USER $APP_UID
 WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+ARG BUILD_CONFIGURATION=Release
+WORKDIR /src
 COPY . .
 
-RUN dotnet restore
-RUN dotnet publish -c Release -o out
+RUN dotnet restore "src/ERP.Api/ERP.Api.csproj"
+COPY . .
+WORKDIR "/src/src/ERP.Api/"
+RUN dotnet build "ERP.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS final
+FROM build AS publish
+ARG BUILD_CONFIGURATION=Release
+RUN dotnet publish "ERP.Api.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+
+FROM base AS final
 WORKDIR /app
-COPY --from=build /app/out .
-
-# Adicione a linha abaixo para instalar o utilitário "wait-for-it"
-RUN apt-get update && apt-get install -y wait-for-it
-
+COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "ERP.Api.dll"]
