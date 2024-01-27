@@ -31,14 +31,15 @@ public class UsersServiceTest
         _notificationServiceMock = new Mock<INotificationService>();
         _profileRepositoryMock = new Mock<IProfileRepository>();
 
+        // Usamos Mock.Of para instanciar uma instância de alguma interface
         _userService = new UserService(
-            dateTimeService: null,
-            tokenClaimsService: null,
-            repository: _userRepositoryMock.Object,
-            uow: Mock.Of<IUnitOfWork>(), // Usamos Mock.Of para instanciar uma instância de IUnitOfWork
-            hashService: null,
-            notificationService: Mock.Of<INotificationService>(), // Instanciamos uma instância de INotificationService
-            repositoryProfile: _profileRepositoryMock.Object
+            dateTimeService:        Mock.Of<IDateTimeService>(),
+            tokenClaimsService:     Mock.Of<ITokenClaimsService>(),
+            uow:                    Mock.Of<IUnitOfWork>(),
+            hashService:            Mock.Of<IHashService>(),
+            notificationService:    Mock.Of<INotificationService>(),
+            repository:             _userRepositoryMock.Object,
+            repositoryProfile:      _profileRepositoryMock.Object
         );
     }
 
