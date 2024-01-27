@@ -1,6 +1,7 @@
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Ardalis.Result;
 using ERP.Application.Interfaces;
 using ERP.Application.Requests.UsersRequests;
 using ERP.Application.Services;
@@ -8,6 +9,7 @@ using ERP.Domain.Entities;
 using ERP.Domain.Repositories;
 using ERP.Shared.Abstractions;
 using Moq;
+using OpenTelemetry.Trace;
 using Xunit;
 
 namespace ERP.Tests.Application.Services;
@@ -99,4 +101,18 @@ public class UsersServiceTest
         Assert.True(result.IsSuccess);
     }
     
+    [Fact]
+    public async Task RemoveUserInWorkspace_ReturnsNotFound()
+    {
+        var userId = new Guid();
+        var userAuth = new ClaimsPrincipal();
+
+        _userRepositoryMock.Setup(repo => repo.GetUserById(userId))
+            .ReturnsAsync((User)null);
+
+        var result = await _userService.RemoveUserInWorkspace(userId, userAuth);
+
+        Assert.False(result.IsSuccess);
+        Assert.Equal(ResultStatus.NotFound, result.Status);
+    }
 }
