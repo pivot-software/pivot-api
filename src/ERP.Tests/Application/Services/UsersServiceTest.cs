@@ -1,4 +1,5 @@
 using System;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using ERP.Application.Interfaces;
 using ERP.Application.Requests.UsersRequests;
@@ -13,7 +14,6 @@ namespace ERP.Tests.Application.Services;
 
 public class UsersServiceTest
 {
-
     private readonly Mock<IUserRepository> _userRepositoryMock;
     private readonly UserService _userService;
     private readonly Mock<IUnitOfWork> _unitOfWorkMock;
@@ -60,7 +60,7 @@ public class UsersServiceTest
         // Assert
         Assert.True(result.IsSuccess);
     }
-    
+
     [Fact]
     public async Task ChangeProfile_ReturnsError()
     {
@@ -83,4 +83,20 @@ public class UsersServiceTest
         // Assert
         Assert.NotEmpty(result.Errors);
     }
+
+    [Fact]
+    public async Task RemoveUserInWorkspace_ReturnsSuccess()
+    {
+        var userId = new Guid();
+        var userAuth = new ClaimsPrincipal();
+        var user = new User("jonhDoe@pivot.com", "Jonh Doe", "12345", 1);
+
+        _userRepositoryMock.Setup(repo => repo.GetUserById(userId))
+            .ReturnsAsync(user);
+
+        var result = await _userService.RemoveUserInWorkspace(userId, userAuth);
+
+        Assert.True(result.IsSuccess);
+    }
+    
 }
