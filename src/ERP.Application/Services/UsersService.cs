@@ -91,7 +91,7 @@ public class UserService : IUsersService
         }
         catch (Exception ex)
         {
-            return Result.Error($"Ocorreu um erro durante a validação: {ex.Message}");
+             return Result.Error($"Ocorreu um erro durante a validação: {ex.Message}");
         }
     }
 
