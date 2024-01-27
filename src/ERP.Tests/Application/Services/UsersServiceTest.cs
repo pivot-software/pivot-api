@@ -1,5 +1,7 @@
 using System;
+using System.Linq;
 using System.Security.Claims;
+using System.Threading;
 using System.Threading.Tasks;
 using Ardalis.Result;
 using ERP.Application.Interfaces;
@@ -100,7 +102,7 @@ public class UsersServiceTest
 
         Assert.True(result.IsSuccess);
     }
-    
+
     [Fact]
     public async Task RemoveUserInWorkspace_ReturnsNotFound()
     {
@@ -114,5 +116,20 @@ public class UsersServiceTest
 
         Assert.False(result.IsSuccess);
         Assert.Equal(ResultStatus.NotFound, result.Status);
+    }
+
+    [Fact]
+    public async Task RemoveUserInWorkspace_ReturnsError()
+    {
+        var userId = new Guid();
+        var userAuth = new ClaimsPrincipal();
+
+        _userRepositoryMock.Setup(repo => repo.GetUserById(userId))
+            .Throws<Exception>();
+
+        var result = await _userService.RemoveUserInWorkspace(userId, userAuth);
+
+        Assert.False(result.IsSuccess);
+        Assert.Contains("Ocorreu um erro durante a validação:", result.Errors.FirstOrDefault());
     }
 }
