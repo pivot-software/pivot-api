@@ -14,7 +14,7 @@ public class UserTests
         var email = "test@example.com";
         var username = "testuser";
         var password = "password";
-        var profileId = 1;
+        var profileId = new Guid();
 
         var user = new User(email, username, password, profileId);
         var token = "sampleToken";
@@ -38,7 +38,7 @@ public class UserTests
         var email = "test@example.com";
         var username = "testuser";
         var password = "password";
-        var profileId = 1;
+        var profileId = new Guid();
         var user = new User(email, username, password, profileId);
         user.Token = "sampleToken";
         user.TokenRefresh = "sampleRefreshToken";
@@ -60,7 +60,7 @@ public class UserTests
         var email = "test@example.com";
         var username = "testuser";
         var password = "password";
-        var profileId = 1;
+        var profileId = new Guid();
         var user = new User(email, username, password, profileId);
         user.Token = null;
         user.RevokeIn = DateTime.UtcNow.AddHours(-1);
@@ -79,7 +79,7 @@ public class UserTests
         var email = "test@example.com";
         var username = "testuser";
         var password = "password";
-        var profileId = 1;
+        var profileId = new Guid();
         var user = new User(email, username, password, profileId);
         user.Token = "sampleToken";
         user.RevokeIn = DateTime.UtcNow.AddHours(1);
@@ -98,7 +98,7 @@ public class UserTests
         var email = "test@example.com";
         var username = "testuser";
         var password = "password";
-        var profileId = 1;
+        var profileId = new Guid();
 
         var user = new User(email, username, password, profileId);
         var newToken = "newToken";

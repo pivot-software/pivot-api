@@ -6,7 +6,7 @@ namespace ERP.Application.Requests.UsersRequest;
 
 public class SignupRequest : BaseRequestWithValidation
 {
-    public SignupRequest(string email, string password, string name, int profileId)
+    public SignupRequest(string email, string password, string name, Guid profileId)
     {
         Email = email;
         Password = password;
@@ -30,7 +30,7 @@ public class SignupRequest : BaseRequestWithValidation
 
     [Required]
     [DataType(DataType.Text)]
-    public int ProfileId { get; }
+    public Guid ProfileId { get; }
 
     public override async Task ValidateAsync() =>
         ValidationResult = await LazyValidator.ValidateAsync<SignupRequestValidator>(this);

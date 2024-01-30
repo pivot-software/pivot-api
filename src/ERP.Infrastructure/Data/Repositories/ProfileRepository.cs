@@ -11,7 +11,7 @@ public class ProfileRepository : EfRepository<Profile>, IProfileRepository
     public ProfileRepository(ErpContext context) : base(context)
     {
     }
-    public async Task<Profile?> GetProfileById(int id)
+    public async Task<Profile?> GetProfileById(Guid id)
     {
         return await DbSet
             .AsNoTracking()

@@ -4,5 +4,5 @@ namespace ERP.Domain.Repositories;
 
 public interface IProfileRepository : IAsyncRepository<Profile>
 {
-    Task<Profile?> GetProfileById(int id);
+    Task<Profile?> GetProfileById(Guid id);
 }

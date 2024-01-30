@@ -33,13 +33,13 @@ public class UsersServiceTest
 
         // Usamos Mock.Of para instanciar uma instância de alguma interface
         _userService = new UserService(
-            dateTimeService:        Mock.Of<IDateTimeService>(),
-            tokenClaimsService:     Mock.Of<ITokenClaimsService>(),
-            uow:                    Mock.Of<IUnitOfWork>(),
-            hashService:            Mock.Of<IHashService>(),
-            notificationService:    Mock.Of<INotificationService>(),
-            repository:             _userRepositoryMock.Object,
-            repositoryProfile:      _profileRepositoryMock.Object
+            dateTimeService: Mock.Of<IDateTimeService>(),
+            tokenClaimsService: Mock.Of<ITokenClaimsService>(),
+            uow: Mock.Of<IUnitOfWork>(),
+            hashService: Mock.Of<IHashService>(),
+            notificationService: Mock.Of<INotificationService>(),
+            repository: _userRepositoryMock.Object,
+            repositoryProfile: _profileRepositoryMock.Object
         );
     }
 
@@ -48,9 +48,9 @@ public class UsersServiceTest
     {
         // Arrange
         var userId = Guid.NewGuid();
-        var profileId = 1; // Defina o ID do perfil
+        var profileId = new Guid("b836e36f-2e47-4230-86d9-bab77a70cc78"); // Defina o ID do perfil
 
-        var user = new User("jonhDoe@pivot.com", "Jonh Doe", "12345", 1);
+        var user = new User("jonhDoe@pivot.com", "Jonh Doe", "12345", new Guid("b836e36f-2e47-4230-86d9-bab77a70cc78"));
         _userRepositoryMock.Setup(repo => repo.GetUserById(userId))
             .ReturnsAsync(user); // Configura o mock para retornar o usuário criado
 
@@ -71,16 +71,16 @@ public class UsersServiceTest
     {
         // Arrange
         var userId = Guid.NewGuid();
-        var profileId = 1; // Defina o ID do perfil
+        var profileId = new Guid("f0daf88b-6cb5-48e9-913a-ce950fb6456c"); // Defina o ID do perfil
 
-        var user = new User("jonhDoe@pivot.com", "Jonh Doe", "12345", 1);
+        var user = new User("jonhDoe@pivot.com", "Jonh Doe", "12345", new Guid("b836e36f-2e47-4230-86d9-bab77a70cc78"));
         _userRepositoryMock.Setup(repo => repo.GetUserById(userId))
             .ReturnsAsync(user); // Configura o mock para retornar o usuário criado
 
         _profileRepositoryMock.Setup(repo => repo.GetProfileById(profileId))
             .ReturnsAsync(new Profile()); // Configura o mock para retornar um perfil simulado
 
-        var request = new ChangeProfileRequest(userId, 2);
+        var request = new ChangeProfileRequest(userId, new Guid("657d723f-b950-436e-b74b-90cd3b8c4d12"));
 
         // Act
         var result = await _userService.ChangeProfile(request);
@@ -92,9 +92,9 @@ public class UsersServiceTest
     [Fact]
     public async Task RemoveUserInWorkspace_ReturnsSuccess()
     {
-        var userId = new Guid();
+        var userId = new Guid("b836e36f-2e47-4230-86d9-bab77a70cc78");
         var userAuth = new ClaimsPrincipal();
-        var user = new User("jonhDoe@pivot.com", "Jonh Doe", "12345", 1);
+        var user = new User("jonhDoe@pivot.com", "Jonh Doe", "12345", new Guid("b836e36f-2e47-4230-86d9-bab77a70cc78"));
 
         _userRepositoryMock.Setup(repo => repo.GetUserById(userId))
             .ReturnsAsync(user);

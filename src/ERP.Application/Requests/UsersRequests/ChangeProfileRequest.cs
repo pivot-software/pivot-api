@@ -5,7 +5,7 @@ namespace ERP.Application.Requests.UsersRequests;
 
 public class ChangeProfileRequest : BaseRequestWithValidation
 {
-    public ChangeProfileRequest(Guid userId, int profileId)
+    public ChangeProfileRequest(Guid userId, Guid profileId)
     {
         UserId = userId;
         ProfileId = profileId;
@@ -15,7 +15,7 @@ public class ChangeProfileRequest : BaseRequestWithValidation
     public Guid UserId { get; }
 
     [Required]
-    public int ProfileId { get; }
+    public Guid ProfileId { get; }
 
     public override async Task ValidateAsync() =>
         ValidationResult = await LazyValidator.ValidateAsync<ChangeProfileRequestValidator>(this);

@@ -10,7 +10,7 @@ namespace ERP.Domain.Entities
     [Table("users")]
     public class User : BaseEntity, IAggregateRoot
     {
-        public User(string email, string username, string password, int profileId)
+        public User(string email, string username, string password, Guid profileId)
         {
             Email = email;
             Username = username;
@@ -42,7 +42,7 @@ namespace ERP.Domain.Entities
         public string? Token { get; set; }
 
         [Column("profile_id")]
-        public int ProfileId { get; set; }
+        public Guid ProfileId { get; set; }
         
         [JsonIgnore]
         [Column("profile")]
