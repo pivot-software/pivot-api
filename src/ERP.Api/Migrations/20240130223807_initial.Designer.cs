@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ERP.Api.Migrations
 {
     [DbContext(typeof(ErpContext))]
-    [Migration("20231101120720_UpdatePermissionsProfile")]
-    partial class UpdatePermissionsProfile
+    [Migration("20240130223807_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,19 +21,17 @@ namespace ERP.Api.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .UseCollation("Latin1_General_CI_AI")
-                .HasAnnotation("ProductVersion", "7.0.13")
+                .HasAnnotation("ProductVersion", "8.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("ERP.Domain.Entities.Permissions", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
+                        .HasColumnType("uuid")
                         .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ActionType")
                         .IsRequired()
@@ -74,12 +72,10 @@ namespace ERP.Api.Migrations
 
             modelBuilder.Entity("ERP.Domain.Entities.Profile", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
+                        .HasColumnType("uuid")
                         .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone")
@@ -110,23 +106,33 @@ namespace ERP.Api.Migrations
 
             modelBuilder.Entity("ERP.Domain.Entities.ProfilePermission", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
+                        .HasColumnType("uuid")
                         .HasColumnName("id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
 
-                    b.Property<int>("PermissionId")
-                        .HasColumnType("integer")
+                    b.Property<Guid?>("DeletedBy")
+                        .HasColumnType("uuid")
+                        .HasColumnName("deleted_by");
+
+                    b.Property<Guid>("PermissionId")
+                        .HasColumnType("uuid")
                         .HasColumnName("permission_id");
 
-                    b.Property<int?>("PermissionsId")
-                        .HasColumnType("integer");
+                    b.Property<Guid?>("PermissionsId")
+                        .HasColumnType("uuid");
 
-                    b.Property<int>("ProfileId")
-                        .HasColumnType("integer")
+                    b.Property<Guid>("ProfileId")
+                        .HasColumnType("uuid")
                         .HasColumnName("profile_id");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at");
 
                     b.HasKey("Id");
 
@@ -147,6 +153,18 @@ namespace ERP.Api.Migrations
                     b.Property<string>("Avatar")
                         .HasColumnType("text")
                         .HasColumnName("avatar");
+
+                    b.Property<bool?>("CanSendEmail")
+                        .HasColumnType("boolean")
+                        .HasColumnName("can_send_email");
+
+                    b.Property<bool?>("CanSendSms")
+                        .HasColumnType("boolean")
+                        .HasColumnName("can_send_sms");
+
+                    b.Property<bool?>("CanSendSystemNotification")
+                        .HasColumnType("boolean")
+                        .HasColumnName("can_send_system_notification");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone")
@@ -170,8 +188,8 @@ namespace ERP.Api.Migrations
                         .HasColumnType("text")
                         .HasColumnName("password");
 
-                    b.Property<int>("ProfileId")
-                        .HasColumnType("integer")
+                    b.Property<Guid>("ProfileId")
+                        .HasColumnType("uuid")
                         .HasColumnName("profile_id");
 
                     b.Property<DateTime>("RevokeIn")
@@ -197,7 +215,13 @@ namespace ERP.Api.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Email")
+                        .IsUnique();
+
                     b.HasIndex("ProfileId");
+
+                    b.HasIndex("Username")
+                        .IsUnique();
 
                     b.ToTable("users");
                 });
@@ -231,6 +255,10 @@ namespace ERP.Api.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("created_at");
+
+                    b.Property<Guid?>("DeletedBy")
+                        .HasColumnType("uuid")
+                        .HasColumnName("deleted_by");
 
                     b.Property<char>("TemplateMode")
                         .HasColumnType("character(1)")

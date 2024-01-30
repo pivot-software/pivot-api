@@ -99,21 +99,21 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    #region [Healthcheck]
-
-    app.UseHealthChecks("/health", new HealthCheckOptions
-    {
-        Predicate = _ => true,
-        ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
-    }).UseHealthChecksUI(options =>
-    {
-        options.UIPath = "/health-ui";
-        options.ApiPath = "/health-api";
-        options.UseRelativeApiPath = false;
-        options.UseRelativeResourcesPath = false;
-    });
-
-    #endregion
+    // #region [Healthcheck]
+    //
+    // app.UseHealthChecks("/health", new HealthCheckOptions
+    // {
+    //     Predicate = _ => true,
+    //     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
+    // }).UseHealthChecksUI(options =>
+    // {
+    //     options.UIPath = "/health-ui";
+    //     options.ApiPath = "/health-api";
+    //     options.UseRelativeApiPath = false;
+    //     options.UseRelativeResourcesPath = false;
+    // });
+    //
+    // #endregion
 }
 
 
