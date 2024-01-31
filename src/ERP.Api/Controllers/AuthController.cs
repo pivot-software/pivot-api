@@ -18,7 +18,7 @@ public class AuthController : ControllerBase
     public AuthController(IAuthenticationService service) =>
         _service = service;
 
-    /// <summary>
+    /// <summary>k
     /// Efetua a autenticação.
     /// </summary>
     /// <param name="request">Endereço de e-mail e senha.</param>
