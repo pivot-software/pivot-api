@@ -1,14 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using ERP.Shared.Abstractions;
+
 namespace ERP.Domain.Entities;
 
 [Table("permissions")]
-public class Permissions
+public class Permissions: BaseEntity, IAggregateRoot
 {
-    [Key]
-    [Column("id")]
-    public int Id { get; set; }
-
     [Column("name")]
     public string PermissionName { get; set; } = null!;
 

@@ -1,16 +1,14 @@
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using ERP.Shared.Abstractions;
+
 namespace ERP.Domain.Entities;
 
-public class ProfilePermission
+public class ProfilePermission: BaseEntity, IAggregateRoot
 {
-    [Key]
-    [Column("id")]
-    public int Id { get; private set; }
 
     [Column("profile_id")]
-    public int ProfileId { get; private set; }
+    public Guid ProfileId { get; private set; }
 
     [Column("permission_id")]
-    public int PermissionId { get; private set; }
+    public Guid PermissionId { get; private set; }
 }

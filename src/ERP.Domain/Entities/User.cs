@@ -20,10 +20,6 @@ namespace ERP.Domain.Entities
             RevokeIn = DateTime.MinValue;
         }
 
-        [Key]
-        [Column("id")]
-        public Guid Id { get; set; } = Guid.NewGuid();
-
         [Required(ErrorMessage = "O campo 'Email' é obrigatório.")]
         [EmailAddress(ErrorMessage = "Formato de email inválido.")]
         [Column("email")]

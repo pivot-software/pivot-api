@@ -22,10 +22,6 @@ namespace ERP.Domain.Entities
             AdminId = adminId;
         }
 
-
-        [Column("id")]
-        public Guid Id { get; } = Guid.NewGuid();
-
         [Column("business_name")]
         public string BusinessName { get; set; } = null!;
 
